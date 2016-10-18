@@ -10,13 +10,21 @@
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<div class="container">
-	<div class="page-header">
-	<h2 style="text-align: center;">TRƯỜNG ĐẠI HỌC SƯ PHẠM KỸ THUẬT TP. HỒ CHÍ MINH</h2>
-	<h6 style="text-align: center;">Địa chỉ: số 1 Võ Văn Ngân, Quận Thủ Đức, TP HCM. - Điện thoại: (84-8) 37221223</h6>
-	<h6 style="text-align: center;">Email: p.cthssv@hcmute.edu.vn - Website: www.hcmute.edu.vn</h6>
+<div class="container" style="padding: 15px">
+		<div class="col-md-1 ">
+			<div class="logo">
+				<img src="img/logo.png" >
+			</div>
+		</div>
+ 		
+ 		<div class="col-md-1 col-md-offset-9">
+ 			<div class="btn-group btn-group-vertical">
+ 				<a href="#" class="btn btn-primary">Sitemap</a>
+ 				<a href="#" class="btn btn-primary">Liên hệ</a>
+ 				<a href="#" class="btn btn-primary">English</a>
+			</div>
+		</div>
 	</div>
-</div>
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
 		<ul class="nav navbar-nav">
@@ -25,7 +33,7 @@
 		<ul class="nav navbar-nav navbar-right">
 			<li><a href="#"><span class="glyphicon glyphicon-user"></span>Nguyễn Văn D</a></li>
 			<li><a href="#"><span>Trang cá nhân</span></a></li>
-			<li><a href="LoginKPI.html"><span class="glyphicon glyphicon-log-out">Thoát</span></a></li>
+			<li><a href="LoginKPI.jsp"><span class="glyphicon glyphicon-log-out">Thoát</span></a></li>
 		</ul>
 	</div>
 </nav>
@@ -83,9 +91,9 @@
 				<td>Nguyễn Văn A</td>
 				<td>KPI1</td>
 				<td>9/9/2016</td>
-				<td><a href="ChiTietKPIgv-TBM.html">xem</a></td>
+				<td><a href="ChiTietKPIgv-TBM.jsp">xem</a></td>
 				<td><input type="checkbox" name=""></td>
-				<td><a href="DanhGiaKPIgv-TBM.html">xem</a></td>
+				<td><a href="DanhGiaKPIgv-TBM.jsp">xem</a></td>
 			</tr>
 			<tr>
 				<td>456</td>
@@ -268,7 +276,7 @@
 			</tbody>
 		</table>
 	</div>
-	<a href="PhanCongcv-TBM.html" class="btn btn-primary" role="button">Thêm công việc</a>
+	<a href="PhanCongcv-TBM.jsp" class="btn btn-primary" role="button">Thêm công việc</a>
     </div>
   </div>
 </div>

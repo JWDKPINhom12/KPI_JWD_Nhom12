@@ -36,22 +36,22 @@
         <h2 class="form-signin-heading">Welcome</h2>
         <div class="radio">          
             <label style="margin-right: 15px">
-             <input type="radio" name="content"><a href="Admin.html">Admin</a>
+             <input type="radio" name="content"><a href="Admin.jsp">Admin</a>
             </label> 
             <label style="margin-right: 15px">
-              <input type="radio" name="content"><a href="GiangVien.html">Giảng viên</a>
+              <input type="radio" name="content"><a href="GiangVien.jsp">Giảng viên</a>
             </label>
             <label style="margin-right: 15px">
-              <input type="radio" name="content"><a href="TruongBoMon.html">Trưởng bộ môn</a>
+              <input type="radio" name="content"><a href="TruongBoMon.jsp">Trưởng bộ môn</a>
             </label>            
             <label style="margin-right: 15px">
-              <input type="radio" name="content"><a href="TruongKhoa.html">Trưởng khoa</a>
+              <input type="radio" name="content"><a href="TruongKhoa.jsp">Trưởng khoa</a>
             </label>
             <label style="margin-right: 15px">
-              <input type="radio" name="content"><a href="BGH.html">Ban giám hiệu</a>
+              <input type="radio" name="content"><a href="BGH.jsp">Ban giám hiệu</a>
             </label>
             <label style="margin-right: 15px">
-              <input type="radio" name="content"><a href="PTCCB.html">Phòng Tổ chức-Cán bộ</a>
+              <input type="radio" name="content"><a href="PTCCB.jsp">Phòng Tổ chức-Cán bộ</a>
             </label>
         </div>
         <p class="UsPw" style="margin-top: 20px">UserID</p><input type="text" id="inputUser" class="form-control" placeholder="User ID" required autofocus>

@@ -11,13 +11,21 @@
   <script src="js/bootstrap.min.js"></script>
 
 </head>
-<div class="container">
-  <div class="page-header">
-  <h2 style="text-align: center;">TRƯỜNG ĐẠI HỌC SƯ PHẠM KỸ THUẬT TP. HỒ CHÍ MINH</h2>
-  <h6 style="text-align: center;">Địa chỉ: số 1 Võ Văn Ngân, Quận Thủ Đức, TP HCM. - Điện thoại: (84-8) 37221223</h6>
-  <h6 style="text-align: center;">Email: p.cthssv@hcmute.edu.vn - Website: www.hcmute.edu.vn</h6>
-  </div>
-</div>
+<div class="container" style="padding: 15px">
+		<div class="col-md-1 ">
+			<div class="logo">
+				<img src="img/logo.png" >
+			</div>
+		</div>
+ 		
+ 		<div class="col-md-1 col-md-offset-9">
+ 			<div class="btn-group btn-group-vertical">
+ 				<a href="#" class="btn btn-primary">Sitemap</a>
+ 				<a href="#" class="btn btn-primary">Liên hệ</a>
+ 				<a href="#" class="btn btn-primary">English</a>
+			</div>
+		</div>
+	</div>
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <ul class="nav navbar-nav">
@@ -25,7 +33,7 @@
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><a href="#"><span class="glyphicon glyphicon-user"></span>Nguyễn Văn A</a></li>
-      <li><a href="LoginKPI.html"><span class="glyphicon glyphicon-log-out">Thoát</span></a></li>
+      <li><a href="LoginKPI.jsp"><span class="glyphicon glyphicon-log-out">Thoát</span></a></li>
     </ul>
   </div>
 </nav>

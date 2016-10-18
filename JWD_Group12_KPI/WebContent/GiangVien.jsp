@@ -10,13 +10,23 @@
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<div class="container">
-	<div class="page-header">
-	<h2 style="text-align: center;">TRƯỜNG ĐẠI HỌC SƯ PHẠM KỸ THUẬT TP. HỒ CHÍ MINH</h2>
-	<h6 style="text-align: center;">Địa chỉ: số 1 Võ Văn Ngân, Quận Thủ Đức, TP HCM. - Điện thoại: (84-8) 37221223</h6>
-	<h6 style="text-align: center;">Email: p.cthssv@hcmute.edu.vn - Website: www.hcmute.edu.vn</h6>
+<body>
+<div class="container" style="padding: 15px">
+		<div class="col-md-1 ">
+			<div class="logo">
+				<img src="img/logo.png" >
+			</div>
+		</div>
+ 		
+ 		<div class="col-md-1 col-md-offset-9">
+ 			<div class="btn-group btn-group-vertical">
+ 				<a href="#" class="btn btn-primary">Sitemap</a>
+ 				<a href="#" class="btn btn-primary">Liên hệ</a>
+ 				<a href="#" class="btn btn-primary">English</a>
+			</div>
+		</div>
 	</div>
-</div>
+
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
 		<ul class="nav navbar-nav">
@@ -24,11 +34,12 @@
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
 			<li><a href="#"><span class="glyphicon glyphicon-user"></span>Nguyễn Văn A</a></li>
-			<li><a href="TrangCaNhan.html"><span>Trang cá nhân</span></a></li>
-			<li><a href="LoginKPI.html"><span class="glyphicon glyphicon-log-out">Thoát</span></a></li>
+			<li><a href="TrangCaNhan.jsp"><span>Trang cá nhân</span></a></li>
+			<li><a href="LoginKPI.jsp"><span class="glyphicon glyphicon-log-out">Thoát</span></a></li>
 		</ul>
 	</div>
 </nav>
+
 <div class="container">
 	<div class="dropdown">
 		<div class="col-md-1 col-md-offset-8">
@@ -52,7 +63,7 @@
 		</div>
 	</div>
 </div>
-<body>
+
 	<div class="container">
 		<h3>Danh sách KPI</h3>
 		<table class="table table-bordered table-striped">
@@ -70,10 +81,10 @@
 			<tr>
 				<td>Giảng dạy</td>
 				<td>9/9/2016</td>
-				<td><a href="ChiTietKPI.html">xem</a></td>
+				<td><a href="ChiTietKPI.jsp">xem</a></td>
 				<td><input type="checkbox" name="Duyet" value="Yes"></td>
 				<td></td>
-				<td><a href="TuDanhgiaKPIGV.html">xem</a></td>
+				<td><a href="TuDanhgiaKPIGV.jsp">xem</a></td>
 			</tr>
 			<tr>
 				<td>Nghiên cứu khoa học</td>

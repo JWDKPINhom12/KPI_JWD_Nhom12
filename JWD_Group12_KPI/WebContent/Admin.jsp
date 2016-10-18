@@ -9,13 +9,22 @@
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<div class="container">
-	<div class="page-header">
-	<h2 style="text-align: center;">TRƯỜNG ĐẠI HỌC SƯ PHẠM KỸ THUẬT TP. HỒ CHÍ MINH</h2>
-	<h6 style="text-align: center;">Địa chỉ: số 1 Võ Văn Ngân, Quận Thủ Đức, TP HCM. - Điện thoại: (84-8) 37221223</h6>
-	<h6 style="text-align: center;">Email: p.cthssv@hcmute.edu.vn - Website: www.hcmute.edu.vn</h6>
+<body>
+	<div class="container" style="padding: 15px">
+		<div class="col-md-1 ">
+			<div class="logo">
+				<img src="img/logo.png" >
+			</div>
+		</div>
+ 		
+ 		<div class="col-md-1 col-md-offset-9">
+ 			<div class="btn-group btn-group-vertical">
+ 				<a href="#" class="btn btn-primary">Sitemap</a>
+ 				<a href="#" class="btn btn-primary">Liên hệ</a>
+ 				<a href="#" class="btn btn-primary">English</a>
+			</div>
+		</div>
 	</div>
-</div>
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
 		<ul class="nav navbar-nav">
@@ -24,11 +33,11 @@
 		<ul class="nav navbar-nav navbar-right">
 			<li><a href="#"><span class="glyphicon glyphicon-user"></span>Nguyễn Văn D</a></li>
 			<li><a href="#"><span>Trang cá nhân</span></a></li>
-			<li><a href="LoginKPI.html"><span class="glyphicon glyphicon-log-out">Thoát</span></a></li>
+			<li><a href="LoginKPI.jsp"><span class="glyphicon glyphicon-log-out">Thoát</span></a></li>
 		</ul>
 	</div>
 </nav>
-<body>
+
 	<div class="container">
  		<ul class="nav nav-tabs">
   			<li class="active"><a data-toggle="pill" href="#kpigv">Quản lý tài khoản</a></li>
@@ -126,7 +135,7 @@
   		 </tbody>
 		</table>
 		<div class="btn1">
-		<a href="SignUp.html" class="btn btn-primary" style="margin-right: 30px" role="button">Thêm</a>
+		<a href="SignUp.jsp" class="btn btn-primary" style="margin-right: 30px" role="button">Thêm</a>
 		<button type="button" class="btn btn-primary" style="margin-right: 30px">Sửa</button>
 		<button type="button" class="btn btn-danger">Xóa</button>
 		</div>
@@ -174,7 +183,7 @@
   		 <tbody>
     		<tr>
     			<th scope="row">1</th>
-     	 			<td><a href="chitiet.html">Giảng dạy</a></td>
+     	 			<td><a href="chitiet.jsp">Giảng dạy</a></td>
      	 			<td><form action="action_page.php"><input type="date" name="bday"></form>
      	 			</td>
       				<td><form action="action_page.php"><input type="date" name="bday"></form></td>
