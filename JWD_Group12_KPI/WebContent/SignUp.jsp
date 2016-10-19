@@ -60,18 +60,18 @@
 	</div>
 </nav>
 <body>
-	<div class="container">
-		<form class="form-horizontal">
+<div class="container">
+<form method="post" class="form-horizontal" id="signup" action="" role="form">
 <fieldset>
 
 <!-- Form Name -->
-<legend>Form Name</legend>
+<legend>Sign Up</legend>
 
 <!-- Text input-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="fn">Họ</label>  
   <div class="col-md-4">
-  <input id="fn" name="fn" type="text" placeholder="Họ" class="form-control input-md" required="">
+  <input id="fn" name="fn" type="text" placeholder="Họ" class="form-control input-md">
     
   </div>
 </div>
@@ -80,20 +80,20 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="ln">Tên</label>  
   <div class="col-md-4">
-  <input id="ln" name="ln" type="text" placeholder="Tên" class="form-control input-md" required="">
+  <input id="ln" name="ln" type="text" placeholder="Tên" class="form-control input-md">
     
   </div>
 </div>
 <!--Sex radio button-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="Training">Giới tính</label>
+  <label class="col-md-4 control-label" for="Gender">Giới tính</label>
   <div class="col-md-4"> 
-    <label class="radio-inline" for="Training-0">
-      <input type="radio" name="Training" id="Training-0" value="yes" checked="checked">
+    <label class="radio-inline" for="Gender-0">
+      <input type="radio" name="Gender" id="Gender-0" value="male" checked="checked">
       Nam
     </label> 
-    <label class="radio-inline" for="Training-1">
-      <input type="radio" name="Training" id="Training-1" value="no">
+    <label class="radio-inline" for="Gender-1">
+      <input type="radio" name="Gender" id="Gender-1" value="female">
       Nữ
     </label>
   </div>
@@ -103,7 +103,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="cmpny">Chức vụ</label>  
   <div class="col-md-4">
-       				<select class="combobox" style="margin-top: 7px">
+       				<select class="form-control" style="margin-top: 7px">
       				<option value="gv">Giảng viên</option>      
       				<option value="tbm">Trưởng bộ môn</option>
       				<option value="tk">Trưởng khoa</option>
@@ -118,7 +118,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="add1">Khoa</label>  
   <div class="col-md-4">
-       				<select class="combobox" style="margin-top: 7px">
+       				<select class="form-control" style="margin-top: 7px">
       				<option value="gv">Công nghệ thông tin</option>    
       				<option value="tbm">Cơ khí chế tạo máy</option>
       				<option value="tk">Cơ khí động lưc</option>
@@ -132,27 +132,26 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="email">Email</label>  
   <div class="col-md-4">
-  <input id="email" name="email" type="text" placeholder="Email" class="form-control input-md" required="">
-    
-  </div>
-</div>
-
-
-
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="add2">Địa chỉ</label>  
-  <div class="col-md-4">
-  <input id="add2" name="add2" type="text" placeholder="" class="form-control input-md">
+  <input id="email" name="email" type="text" placeholder="Email" class="form-control input-md">
+  <span id="helpBlock" class="help-block">Ex: email@example.com</span>
     
   </div>
 </div>
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="city">Số điện thoại</label>  
+  <label class="col-md-4 control-label" for="add">Địa chỉ</label>  
   <div class="col-md-4">
-  <input id="city" name="city" type="text" class="form-control input-md" required="">
+  <input id="add" name="add" type="text" placeholder="Địa chỉ" class="form-control input-md">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="sdt">Số điện thoại</label>  
+  <div class="col-md-4">
+  <input id="sdt" name="sdt" type="text" placeholder="SĐT" class="form-control input-md">
     
   </div>
 </div>
@@ -160,12 +159,63 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="submit"></label>
   <div class="col-md-4">
-    <button id="submit" name="submit" class="btn btn-primary">Xác nhận</button>    
-    <button id="cancel" name="submit" class="btn btn-danger">Hủy</button>
+    <button type ="submit" id="submit" class="btn btn-primary">Xác nhận</button>    
+    <button type ="button" id="cancel" class="btn btn-danger">Hủy</button>
   </div>
 </div>
 </fieldset>
 </form>
-	</div>
+</div>
+<script>
+
+function validateText(id){
+	if($("#"+id).val()==null || $("#"+id).val()=="")
+	{
+		var div = $("#"+id).closest("div");
+		div.removeClass("has-success");
+		$("#glypcn"+id).remove();
+		div.addClass("has-error has-feedback");
+		div.append('<span id="glypcn'+id+'" class="glyphicon glyphicon-remove form-control-feedback"></span>')
+		return false;
+	}
+	else
+	{
+		var div = $("#"+id).closest("div");
+		div.removeClass("has-error");
+		div.addClass("has-success has-feedback");
+		$("#glypcn"+id).remove();
+		div.append('<span id="glypcn'+id+'" class="glyphicon glyphicon-ok form-control-feedback"></span>')
+		return true;
+	}
+}
+
+$(document).ready(
+		function(){
+			$("#submit").click(function()
+			{
+				if(!validateText("fn"))
+				{
+					return false;
+				}
+				if(!validateText("ln"))
+				{
+					return false;
+				}
+				if(!validateText("email"))
+				{
+					return false;
+				}
+				if(!validateText("add"))
+				{
+					return false;
+				}
+				if(!validateText("sdt"))
+				{
+					return false;
+				}
+			});
+		}
+		)
+</script>
 </body>
 </html>
