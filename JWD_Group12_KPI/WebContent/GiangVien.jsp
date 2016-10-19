@@ -14,26 +14,40 @@
  			background-color: #6600cc;
  			color: white;
  		}
-
+		#footer{
+ 			text-align: right;
+ 			list-style: none;
+ 		}
+ 		#footer li{
+ 			display:inline;
+ 		}
+ 		#footer li:not(:first-child):before{
+ 			content: '|';
+ 			padding:0px 10px
+ 		}
+ 		#footer a{
+ 			color: #b2b2b2;
+ 		}
+ 		#footer a:hover{
+ 			color: #4d4d4d;
+ 		}
 	</style>
 </head>
-<body>
-<div class="container" style="padding: 15px">
+	<div class="container" style="padding: 15px">
 		<div class="col-md-1 ">
 			<div class="logo">
 				<img src="img/logo.png" >
 			</div>
 		</div>
  		
- 		<div class="col-md-1 col-md-offset-9">
- 			<div class="btn-group btn-group-vertical">
- 				<a href="#" class="btn btn-primary">Sitemap</a>
- 				<a href="#" class="btn btn-primary">Liên hệ</a>
- 				<a href="#" class="btn btn-primary">English</a>
-			</div>
+ 		<div id="footer">
+ 			<ul>
+ 				<li><a href="#" ">Sitemap</a></li>
+ 				<li><a href="#" ">Liên hệ</a></li>
+ 				<li><a href="#" ">English</a></li>
+ 			</ul>
 		</div>
 	</div>
-
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
 		<ul class="nav navbar-nav">
