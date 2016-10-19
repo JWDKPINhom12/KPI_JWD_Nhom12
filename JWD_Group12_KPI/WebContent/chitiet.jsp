@@ -7,8 +7,33 @@
 <title>Chi tiết</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
+  
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+
+<script>
+  $(document).ready(function(){
+//Datepicker Popups calender to Choose date
+$(function(){
+    $( ".MyDatepicker" ).datepicker();
+	//Pass the user selected date format 
+    $( "#format" ).change(function() {
+      $( "#datepicker" ).datepicker( "option", "dateFormat: 'dd/mm/yy'", $(this).val() );
+    });
+  });
+  
+});
+$( "#datepicker" ).datepicker({
+	inline: true
+});
+  </script>
+  
+  
+  
 	<style type="text/css">
  		thead{
  			background-color: #6600cc;
@@ -77,9 +102,10 @@
           <th scope="row">1</th>
             <td>Dạy đủ số tiết/tuần</td>
             <td>Dạy đủ 120 tiết</td>
-            <td><form action="action_page.php"><input type="date" name="bday"></form>
+            <td><input type="text" class="MyDatepicker">
             </td>
-              <td><form action="action_page.php"><input type="date" name="bday"></form></td>
+            <td><input type="text" class="MyDatepicker">
+            </td>
           </tr>
         <tr>
           <td>&nbsp</td>
@@ -102,6 +128,11 @@
     <button type="button" class="btn btn-primary" style="margin-right: 30px">Sửa</button>
     <button type="button" class="btn btn-danger">Xóa</button>
     </div>
-  </div>
+  </div>  
+	<script>
+    $("#datepicker").datepicker({
+    	dateFormat:'dd/mm/yy'
+    });
+  </script>
 </body>
 </html>
