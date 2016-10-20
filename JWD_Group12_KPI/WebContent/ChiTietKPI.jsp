@@ -65,6 +65,7 @@
 		<table class="table table-bordered table-striped">
 			<thead>
 				<tr>
+					<th>Đăng ký</th>
 					<th>Mục tiêu</th>
 					<th>Nội dung chi tiết</th>
 					<th>Phương pháp</th>
@@ -74,6 +75,7 @@
 			</thead>
 			<tbody>
 			<tr>
+				<td><input type="checkbox" name="Duyet" value="Yes"></td>
 				<td>Giảng dạy đủ số tiết/tuần</td>
 				<td>Dạy đủ 120 tiết</td>
 				<td>Sắp xếp thời gian hợp lý</td>
@@ -86,25 +88,29 @@
 				<td></td>
 				<td></td>
 				<td></td>
-			</tr>
-			<tr>
-				<td><h1></h1></td>
-				<td></td>
-				<td></td>
-				<td></td>
 				<td></td>
 			</tr>
 			<tr>
 				<td><h1></h1></td>
-				<td> </td>
-				<td> </td>
+				<td></td>
+				<td></td>
+				<td></td>
 				<td></td>
 				<td></td>
 			</tr>
 			<tr>
 				<td><h1></h1></td>
 				<td> </td>
+				<td></td>
 				<td> </td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><h1></h1></td>
+				<td> </td>
+				<td> </td>
+				<td></td>
 				<td></td>
 				<td></td>
 			</tr>

@@ -207,7 +207,7 @@
   		 </thead>
   		 <tbody>
     		<tr>
-    			<th scope="row">1</th>
+    				<th scope="row">1</th>
      	 			<td><a href="chitiet.jsp">Giảng dạy</a></td>
      	 			<td><form action="action_page.php"><input type="date" name="bday"></form>
      	 			</td>
