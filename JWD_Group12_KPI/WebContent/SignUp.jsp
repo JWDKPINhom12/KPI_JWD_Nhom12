@@ -63,28 +63,21 @@
 <div class="container">
 <form method="post" class="form-horizontal" id="signup" action="" role="form">
 <fieldset>
-
-<!-- Form Name -->
 <legend>Sign Up</legend>
-
-<!-- Text input-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="fn">Họ</label>  
   <div class="col-md-4">
-  <input id="fn" name="fn" type="text" placeholder="Họ" class="form-control input-md">
-    
+  <input id="fn" name="fn" type="text" placeholder="Họ" class="form-control input-md">    
   </div>
 </div>
 
-<!-- Text input-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="ln">Tên</label>  
   <div class="col-md-4">
-  <input id="ln" name="ln" type="text" placeholder="Tên" class="form-control input-md">
-    
+  <input id="ln" name="ln" type="text" placeholder="Tên" class="form-control input-md">    
   </div>
 </div>
-<!--Sex radio button-->
+
 <div class="form-group">
   <label class="col-md-4 control-label" for="Gender">Giới tính</label>
   <div class="col-md-4"> 
@@ -99,7 +92,6 @@
   </div>
 </div>
 
-<!-- Text input--><!--RIGHT HERE-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="cmpny">Chức vụ</label>  
   <div class="col-md-4">
@@ -114,7 +106,7 @@
     
   </div>
 </div>
-<!-- Text input-->
+
 <div class="form-group">
   <label class="col-md-4 control-label" for="add1">Khoa</label>  
   <div class="col-md-4">
@@ -128,34 +120,29 @@
     
   </div>
 </div>
-<!-- Text input-->
+
 <div class="form-group">
   <label class="col-md-4 control-label" for="email">Email</label>  
   <div class="col-md-4">
   <input id="email" name="email" type="text" placeholder="Email" class="form-control input-md">
-  <span id="helpBlock" class="help-block">Ex: email@example.com</span>
-    
+  <span id="helpBlock" class="help-block">Ex: email@example.com</span>    
   </div>
 </div>
 
-<!-- Text input-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="add">Địa chỉ</label>  
   <div class="col-md-4">
-  <input id="add" name="add" type="text" placeholder="Địa chỉ" class="form-control input-md">
-    
+  <input id="add" name="add" type="text" placeholder="Địa chỉ" class="form-control input-md">    
   </div>
 </div>
 
-<!-- Text input-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="sdt">Số điện thoại</label>  
   <div class="col-md-4">
-  <input id="sdt" name="sdt" type="text" placeholder="SĐT" class="form-control input-md">
-    
+  <input id="sdt" name="sdt" type="text" placeholder="SĐT" class="form-control input-md">    
   </div>
 </div>
-<!-- Button -->
+
 <div class="form-group">
   <label class="col-md-4 control-label" for="submit"></label>
   <div class="col-md-4">
