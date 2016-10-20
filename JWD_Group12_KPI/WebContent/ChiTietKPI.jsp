@@ -116,7 +116,12 @@
 			</tr>
 			</tbody>
 		</table>
-		<a href="GiangVien.jsp" class="btn btn-success" role="button">Xác nhận</a>
+		<a href="GiangVien.jsp" class="btn btn-success" onclick="myFunction()" role="button">Xác nhận</a>
 	</div>
 </body>
+<script>
+function myFunction() {
+    alert("Đăng ký thành công!");
+}
+</script>
 </html>
