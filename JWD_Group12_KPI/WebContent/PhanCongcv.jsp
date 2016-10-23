@@ -14,6 +14,21 @@
  			background-color: #6600cc;
  			color: white;
  		}
+ 		img{
+ 			width: 100%;
+ 			height: auto;
+ 		}
+ 		 .site-footer{
+ 			background-color: #cccccc;
+ 			margin-top: 30px;
+ 			padding-bottom: 30px;
+ 		}
+ 		.bottom-footer{
+ 			border-top: 1px solid |
+ 			margin-top: 10px;
+ 			padding-top: 20px;
+ 			color: #000000;
+ 		}
 		#footer{
  			text-align: right;
  			list-style: none;
@@ -34,7 +49,7 @@
 	</style>
 </head>
 	<div class="container" style="padding: 15px">
-		<div class="col-md-1 ">
+		<div class="col-md-7 ">
 			<div class="logo">
 				<img src="img/logo.png" >
 			</div>
@@ -116,7 +131,19 @@
 		</table>
 		<a href="PTCCB.jsp" class="btn btn-success" role="button">Xác nhận</a>
 	</div>
-
+	<footer class="site-footer">
+		<div class="container">
+			<div class="row">
+				<div class="bottom-footer">
+					<div class="col-md-7">
+						<p>Copyright © 2016, Trường Đại Học Sư Phạm Kỹ Thuật - Tp.HCM</p>
+						<p>Địa chỉ: 1 Võ Văn Ngân, Phường Linh Chiểu, Quận Thủ Đức, Thành phố Hồ Chí Minh.</p>
+						<p>Điện thoại: (+84 - 8) 38968641 - (+84 - 8) 38961333</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
 
 </body>
 </html>
