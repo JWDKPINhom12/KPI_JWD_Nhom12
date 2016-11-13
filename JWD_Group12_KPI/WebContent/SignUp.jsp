@@ -57,9 +57,9 @@
  		
  		<div id="footer">
  			<ul>
- 				<li><a href="#" ">Sitemap</a></li>
- 				<li><a href="#" ">Liên hệ</a></li>
- 				<li><a href="#" ">English</a></li>
+ 				<li><a href="#">Sitemap</a></li>
+ 				<li><a href="#">Liên hệ</a></li>
+ 				<li><a href="#">English</a></li>
  			</ul>
 		</div>
 	</div>
@@ -76,7 +76,7 @@
 </nav>
 <body>
 <div class="container">
-<form method="post" class="form-horizontal" id="signup" action="" role="form">
+<form method="post" class="form-horizontal" id="signup" action="AddMember.jsp" role="form">
 <fieldset>
 <legend>Sign Up</legend>
 <div class="form-group">
@@ -90,6 +90,20 @@
   <label class="col-md-4 control-label" for="ln">Tên</label>  
   <div class="col-md-4">
   <input id="ln" name="ln" type="text" placeholder="Tên" class="form-control input-md">    
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="uname">UserID</label>  
+  <div class="col-md-4">
+  <input id="uname" name="uname" type="text" placeholder="UserID" class="form-control input-md">    
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="pass">Pass</label>  
+  <div class="col-md-4">
+  <input id="pass" name="pass" type="text" placeholder="Pass" class="form-control input-md">    
   </div>
 </div>
 
@@ -110,7 +124,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="cmpny">Chức vụ</label>  
   <div class="col-md-4">
-       				<select class="form-control" style="margin-top: 7px">
+       				<select class="form-control" name="cmpny" style="margin-top: 7px">
       				<option value="gv">Giảng viên</option>      
       				<option value="tbm">Trưởng bộ môn</option>
       				<option value="tk">Trưởng khoa</option>
@@ -125,11 +139,11 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="add1">Khoa</label>  
   <div class="col-md-4">
-       				<select class="form-control" style="margin-top: 7px">
-      				<option value="gv">Công nghệ thông tin</option>    
-      				<option value="tbm">Cơ khí chế tạo máy</option>
-      				<option value="tk">Cơ khí động lưc</option>
-      				<option value="bgh">Điện - Điện tử</option>			
+       				<select class="form-control" name="add1" style="margin-top: 7px">
+      				<option value="CNTT">Công nghệ thông tin</option>    
+      				<option value="CKCTM">Cơ khí chế tạo máy</option>
+      				<option value="CKDL">Cơ khí động lưc</option>
+      				<option value="DDT">Điện - Điện tử</option>			
       				<option value="ad">...</option>
        				</select>
     
@@ -162,7 +176,7 @@
   <label class="col-md-4 control-label" for="submit"></label>
   <div class="col-md-4">
     <button type ="submit" id="submit" class="btn btn-primary">Xác nhận</button>    
-    <button type ="button" id="cancel" class="btn btn-danger">Hủy</button>
+    <a href="Admin.jsp" class="btn btn-danger" role="button">Hủy</a>
   </div>
 </div>
 </fieldset>
@@ -211,11 +225,20 @@ $(document).ready(
 		function(){
 			$("#submit").click(function()
 			{
+
 				if(!validateText("fn"))
 				{
 					return false;
 				}
 				if(!validateText("ln"))
+				{
+					return false;
+				}
+				if(!validateText("uname"))
+				{
+					return false;
+				}
+				if(!validateText("pass"))
 				{
 					return false;
 				}

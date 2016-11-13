@@ -47,30 +47,31 @@
             </div>
           <div class="panel-body">
               <div class="radio">   
-                <form id="form-login" action="" method="POST" role="form">       
+                <form id="form-login" action="LoginAction.jsp" method="POST" role="form">       
                   <label style="margin-right: 15px">
-                   <input type="radio" name="content" id="1"><a href="Admin.jsp">Admin</a>
+                   <input type="radio" name="content" value='ad'><a href="Admin.jsp">Admin</a>
                   </label> 
                   <label style="margin-right: 15px">
-                    <input type="radio" name="content" id="2"><a href="GiangVien.jsp">Giảng viên</a>
+                    <input type="radio" name="content" value='gv'><a href="GiangVien.jsp">Giảng viên</a>
                   </label>
                   <label style="margin-right: 15px">
-                    <input type="radio" name="content" id="3"><a href="TruongBoMon.jsp">Trưởng bộ môn</a>
+                    <input type="radio" name="content" value='tbm'><a href="TruongBoMon.jsp">Trưởng bộ môn</a>
                   </label>            
                   <label style="margin-right: 15px">
-                    <input type="radio" name="content" id="4"><a href="TruongKhoa.jsp">Trưởng khoa</a>
+                    <input type="radio" name="content" value='tk'><a href="TruongKhoa.jsp">Trưởng khoa</a>
                   </label>
                   <label style="margin-right: 15px">
-                    <input type="radio" name="content" id="5"><a href="BGH.jsp">Ban giám hiệu</a>
+                    <input type="radio" name="content" value='bgh'><a href="BGH.jsp">Ban giám hiệu</a>
                   </label>
                   <label style="margin-right: 15px">
-                    <input type="radio" name="content" id="6"><a href="PTCCB.jsp">Phòng Tổ chức-Cán bộ</a>
+                    <input type="radio" name="content" value='ptc'><a href="PTCCB.jsp">Phòng Tổ chức-Cán bộ</a>
                   </label>
               </div>
 
-                <p class="UsPw" style="margin-top: 20px">UserID</p><input type="text" id="inputUser" class="form-control" placeholder="User ID" required autofocus>
+                <p class="UsPw" style="margin-top: 20px">UserID</p>
+                <input type="text" name="uname" id="inputUser" class="form-control" placeholder="User ID" required autofocus>
                 <p class="UsPw" style="margin-top: 10px">Password</p>    
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                <input type="password" id="inputPassword" name="pass" class="form-control" placeholder="Password" required>
                 <div class="checkbox">
                   <label>
                     <input type="checkbox" value="remember-me"> Remember me
@@ -86,7 +87,7 @@
       </div>
     </div> <!-- /container -->   
   </body>
-  
+ <%--
   <script type="text/javascript">
     var CORRECT_USER = "admin1";
     var CORRECT_PASS = "123";
@@ -115,8 +116,8 @@
       }
       return false;
     }
-          
-
-  </script>
+  </script>  --%>
+  
+  
 
 </html>

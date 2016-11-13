@@ -1,3 +1,9 @@
+<%@ page import="java.io.*,java.util.*,java.sql.*"%>
+<%@ page import="javax.servlet.http.*,javax.servlet.*" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -109,70 +115,35 @@
 			</div>
 		</div>
 
+	    <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
+	    	    url="jdbc:mysql://localhost/db_kpi"
+	    	    user="root"  password="1672538Son"/>
+		<sql:query dataSource="${snapshot}" var="result">
+		SELECT first_name, last_name, uname, pass, chucvu from members;
+		</sql:query>
 
 		<div class="container">
 		<h3>Tài khoản giảng viên</h3>
 		<table class="table table-bordered table-striped">
 			 <thead>
   		  	<tr class="thead1">  		  	
-     		 	<th>#</th>
   		   	 	<th>Tên giảng viên</th>
     		 	<th>Mã giảng viên</th>
-    		 	<th>UserID</th>
     		 	<th>Password</th>
     		 	<th>Phân quyền</th>
  	   		</tr>
-  		 </thead>
+  		 	</thead>
+  		 	<c:forEach var="row" items="${result.rows}">
   		 <tbody>
     		<tr>
-    			<th scope="row">1</th>
-     	 			<td>Nguyễn Văn A</td>
-     	 			<td>123</td>
-      				<td>NVA123</td>
-      				<td>1234ABCD</td>
-      				<td>
-      				<select class="combobox">
-      				<option value="gv">Giảng viên</option>      
-      				<option value="tbm">Trưởng bộ môn</option>
-      				<option value="tk">Trưởng khoa</option>
-      				<option value="bgh">Ban giám hiệu</option>
-      				<option value="ptc">Phòng Tổ chức - Cán bộ</option>
-      				<option value="ad">Admin</option>
-       				</select>
-   					</td>
+     	 			<td><c:out value="${row.first_name} ${row.last_name}"/></td>
+      				<td><c:out value="${row.uname}"/></td>
+      				<td><c:out value="${row.pass}"/></td>
+      				<td><c:out value="${row.chucvu}"/></td>
     		</tr>
-    		<tr>
-    	  		<th scope="row">2</th>
-     	 			<td>Nguyễn Văn C</td>
-     	 			<td>124</td>
-      				<td>NVC124</td>
-      				<td>5678XYZ</td>
-      				<td>
-      				<select class="combobox">
-      				<option value="gv">Giảng viên</option>      
-      				<option value="tbm">Trưởng bộ môn</option>
-      				<option value="tk">Trưởng khoa</option>
-      				<option value="bgh">Ban giám hiệu</option>
-      				<option value="ptc">Phòng Tổ chức - Cán bộ</option>
-      				<option value="ad">Admin</option>
-       				</select></td>
-    		</tr>	
-    		<tr>
-    			<td>&nbsp</td>
-    			<td>&nbsp</td>
-    			<td>&nbsp</td>
-    			<td>&nbsp</td>
-    			<td>&nbsp</td>
-    		</tr>
-    		<tr>
-    			<td>&nbsp</td>
-    			<td>&nbsp</td>
-    			<td>&nbsp</td>
-    			<td>&nbsp</td>
-    			<td>&nbsp</td>
-    			<td>&nbsp</td>
-    		</tr>    		
+	
   		 </tbody>
+  		 </c:forEach>
 		</table>
 		<div class="btn1">
 		<a href="SignUp.jsp" class="btn btn-primary" style="margin-right: 30px" role="button">Thêm</a>
