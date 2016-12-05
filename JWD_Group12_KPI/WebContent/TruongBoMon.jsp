@@ -1,3 +1,9 @@
+<%@ page import="java.io.*,java.util.*,java.sql.*"%>
+<%@ page import="javax.servlet.http.*,javax.servlet.*" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -9,45 +15,19 @@
  	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
- 	<style type="text/css">
- 		thead{
- 			background-color: #6600cc;
- 			color: white;
- 		}
- 		img{
- 			width: 100%;
- 			height: auto;
- 		}
- 		 .site-footer{
- 			background-color: #cccccc;
- 			margin-top: 30px;
- 			padding-bottom: 30px;
- 		}
- 		.bottom-footer{
- 			border-top: 1px solid |
- 			margin-top: 10px;
- 			padding-top: 20px;
- 			color: #000000;
- 		}
-		#footer{
- 			text-align: right;
- 			list-style: none;
- 		}
- 		#footer li{
- 			display:inline;
- 		}
- 		#footer li:not(:first-child):before{
- 			content: '|';
- 			padding:0px 10px
- 		}
- 		#footer a{
- 			color: #b2b2b2;
- 		}
- 		#footer a:hover{
- 			color: #4d4d4d;
- 		}
-	</style>
+	<link rel="stylesheet" type="text/css"  href="css/style.css">
+
 </head>
+<body>
+	    <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
+	    	    url="jdbc:mysql://localhost/db_kpi"
+	    	    user="root"  password="1672538Son"/>
+
+		<sql:query dataSource="${snapshot}" var="result">
+						SELECT * from members where uname = <%=session.getAttribute("userid")%>;
+		</sql:query>
+<div class="page-wrap">
+	<div class="header">
 	<div class="container" style="padding: 15px">
 		<div class="col-md-7 ">
 			<div class="logo">
@@ -62,20 +42,22 @@
  				<li><a href="#" ">English</a></li>
  			</ul>
 		</div>
-	</div>
+	</div></div>
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
 		<ul class="nav navbar-nav">
 				<li><a class="navbar-brand" href="#"><span class="glyphicon glyphicon-home"></span>Trang chủ</a></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
-			<li><a href="#"><span class="glyphicon glyphicon-user"></span>Nguyễn Văn D</a></li>
-			<li><a href="#"><span>Trang cá nhân</span></a></li>
+		    <c:forEach var="row" items="${result.rows}">
+			<li><a href="#"><span class="glyphicon glyphicon-user"><c:out value="${row.first_name} ${row.last_name}"/></span></a></li>
+			</c:forEach>
+			<li><a href="TrangCaNhantbm.jsp"><span>Trang cá nhân</span></a></li>
 			<li><a href="LoginKPI.jsp"><span class="glyphicon glyphicon-log-out">Thoát</span></a></li>
 		</ul>
 	</div>
 </nav>
-<body>
+
 	<div class="container">
  		<ul class="nav nav-tabs">
   			<li class="active"><a data-toggle="pill" href="#kpigv">KPI Giảng viên</a></li>
@@ -109,6 +91,9 @@
 		</div>
 
 
+		<sql:query dataSource="${snapshot}" var="result">
+		SELECT distinct uname,first_name,last_name,duyet from dkkpi d1 inner join members d2 on d1.magv=d2.uname where chucvu = "gv";
+		</sql:query>
 		<div class="container">
 		<h3>KPI Giảng Viên</h3>
 		<table class="table table-bordered table-striped">
@@ -116,51 +101,22 @@
 				<tr>
 					<th>Mã giảng viên</th>
 					<th>Tên giảng viên</th>
-					<th>Tên KPI</th>
-					<th>Ngày duyệt</th>
 					<th>Chi tiết</th>
 					<th>Duyệt</th>
 					<th>Đánh giá</th>
 				</tr>
 			</thead>
+			<c:forEach var="row" items="${result.rows}">
 			<tbody>
 			<tr>
-				<td>123</td>
-				<td>Nguyễn Văn A</td>
-				<td>KPI1</td>
-				<td>9/9/2016</td>
-				<td><a href="ChiTietKPIgv-TBM.jsp">xem</a></td>
-				<td><input type="checkbox" name=""></td>
-				<td><a href="DanhGiaKPIgv-TBM.jsp">xem</a></td>
-			</tr>
-			<tr>
-				<td>456</td>
-				<td>Trần Thị B</td>
-				<td>KPI2</td>
-				<td>8/4/2016</td>
-				<td><a href="#">xem</a></td>
-				<td><input type="checkbox" name=""></td>
-				<td><a href="#">xem</a></td>
-			</tr>
-			<tr>
-				<td><h1></h1></td>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-				<td></td>
-				<td> </td>
-			</tr>
-			<tr>
-				<td><h1></h1></td>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-				<td></td>
-				<td> </td>
+				<td><c:out value="${row.uname}"/></td>
+				<td><c:out value="${row.first_name} ${row.last_name}"/></td>
+				<td><a href="ChiTietKPIgv-TBM.jsp?id=${row.uname}">xem</a></td>
+				<td><span class="${row.duyet}"></span></td>
+				<td><a href="DanhGiaKPIgv-TBM.jsp?id=${row.uname}">xem</a></td>
 			</tr>
 			</tbody>
+			</c:forEach>
 		</table>
 	</div>
 </div>
@@ -192,58 +148,53 @@
 		</div>
 
 
-		<div class="container">
-		<h3>KPI cá nhân</h3>
+	<div class="container">
+
+		<sql:query dataSource="${snapshot}" var="result">
+				SELECT * from dkkpi d1 inner join danhsachbm d2 on d1.makpi=d2.makpi where magv =<%=session.getAttribute("userid")%> ;
+		</sql:query>
+		<h3>Danh sách KPI đăng ký</h3>
 		<table class="table table-bordered table-striped">
 			<thead>
 				<tr>
-					<th>Tên KPI</th>
-					<th>Ngày đăng ký</th>
-					<th>Chi tiết</th>
+					<th>Mã KPI</th>
+					<th>Mục tiêu</th>
+					<th>Nội dung chi tiết</th>
+					<th>Thời gian thực hiện</th>
+					<th>Chỉ tiêu đăng ký</th>
 					<th>Duyệt</th>
+					<th>Điểm KPI max</th>
+					<th>Điểm tự đánh giá</th>
+					<th>Điểm cấp trên đánh giá</th>
 					<th>Nhận xét</th>
-					<th>Đánh giá</th>
 				</tr>
 			</thead>
+        <c:forEach var="row" items="${result.rows}">
 			<tbody>
+
 			<tr>
-				<td>Giảng dạy</td>
-				<td>9/9/2016</td>
-				<td><a href="#">xem</a></td>
-				<td><input type="checkbox" name="Duyet" value="Yes"></td>
-				<td></td>
-				<td><a href="#">xem</a></td>
+				<td><c:out value="${row.makpi}"/></td>
+				<td><c:out value="${row.muctieu}"/></td>
+				<td><c:out value="${row.noidung}"/></a></td>
+				<td><c:out value="${row.tgbd} : ${row.tgkt}"/></td>
+				<td><c:out value="${row.ctdk}"/></td>
+				<td><span class="${row.duyet}"></span></td>
+				<td><c:out value="${row.dkpimax}"/></td>
+				<td><c:out value="${row.dtdg}"/></td>
+				<td><c:out value="${row.dctdg}"/></td>
+				<td><c:out value="${row.nx}"/></td>
 			</tr>
-			<tr>
-				<td>Nghiên cứu khoa học</td>
-				<td>8/4/2016</td>
-				<td><a href="#">xem</a></td>
-				<td><input type="checkbox" name="Duyet" value="Yes"></td>
-				<td></td>
-				<td><a href="#">xem</a></td>
-			</tr>
-			<tr>
-				<td><h1></h1></td>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-			</tr>
-			<tr>
-				<td><h1></h1></td>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-			</tr>
+			
 			</tbody>
+			</c:forEach>
 		</table>
+		<a href="dkkpitbm.jsp" class="btn btn-info" role="button">Đăng ký</a>
+
 	</div>
 </div>
-
-
+		<sql:query dataSource="${snapshot}" var="result">
+				SELECT * from pccv p inner join members m on p.magv=m.uname where chucvu = "gv";
+		</sql:query>
     <div id="pccv" class="tab-pane fade">
 
 		<div class="container">
@@ -278,47 +229,28 @@
 					<th>Mã giảng viên</th>
 					<th>Tên giảng viên</th>
 					<th>Tên công việc</th>
+					<th>Nộ dung</th>
 					<th>Ngày phân công</th>
-					<th>Chi tiết</th>
 				</tr>
 			</thead>
+			<c:forEach var="row" items="${result.rows}">
 			<tbody>
 			<tr>
-				<td>123</td>
-				<td>Nguyễn Văn A</td>
-				<td>CV1</td>
-				<td>9/9/2016</td>
-				<td><a href="#">xem</a></td>
-			</tr>
-			<tr>
-				<td>456</td>
-				<td>Trần Thị B</td>
-				<td>CV2</td>
-				<td>8/4/2016</td>
-				<td><a href="#">xem</a></td>
-			</tr>
-			<tr>
-				<td><h1></h1></td>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-			</tr>
-			<tr>
-				<td><h1></h1></td>
-				<td> </td>
-				<td> </td>
-				<td> </td>
-				<td> </td>
+				<td><c:out value="${row.magv}"/></td>
+				<td><c:out value="${row.first_name} ${row.last_name}"/></td>
+				<td><c:out value="${row.tieude}"/></td>
+				<td><c:out value="${row.nd}"/></td>
+				<td><c:out value="${row.regdate}"/></td>
 			</tr>
 			</tbody>
+			</c:forEach>
 		</table>
 	</div>
 	<a href="PhanCongcv-TBM.jsp" class="btn btn-primary" role="button">Thêm công việc</a>
     </div>
   </div>
 </div>
-
+</div>
 	<footer class="site-footer">
 		<div class="container">
 			<div class="row">

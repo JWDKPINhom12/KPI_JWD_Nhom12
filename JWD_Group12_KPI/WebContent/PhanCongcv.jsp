@@ -9,45 +9,11 @@
  	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
- 	<style type="text/css">
- 		thead{
- 			background-color: #6600cc;
- 			color: white;
- 		}
- 		img{
- 			width: 100%;
- 			height: auto;
- 		}
- 		 .site-footer{
- 			background-color: #cccccc;
- 			margin-top: 30px;
- 			padding-bottom: 30px;
- 		}
- 		.bottom-footer{
- 			border-top: 1px solid |
- 			margin-top: 10px;
- 			padding-top: 20px;
- 			color: #000000;
- 		}
-		#footer{
- 			text-align: right;
- 			list-style: none;
- 		}
- 		#footer li{
- 			display:inline;
- 		}
- 		#footer li:not(:first-child):before{
- 			content: '|';
- 			padding:0px 10px
- 		}
- 		#footer a{
- 			color: #b2b2b2;
- 		}
- 		#footer a:hover{
- 			color: #4d4d4d;
- 		}
-	</style>
+	<link rel="stylesheet" type="text/css"  href="css/style.css">
 </head>
+<body>
+<div class="page-wrap">
+	<div class="header">
 	<div class="container" style="padding: 15px">
 		<div class="col-md-7 ">
 			<div class="logo">
@@ -63,6 +29,7 @@
  			</ul>
 		</div>
 	</div>
+	</div>
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
 		<ul class="nav navbar-nav">
@@ -75,7 +42,7 @@
 		</ul>
 	</div>
 </nav>
-<body>
+
 <div class="container">
 	<div class="form-group">
 		<div class="col-md-10">
@@ -130,6 +97,7 @@
 			</tbody>
 		</table>
 		<a href="PTCCB.jsp" class="btn btn-success" role="button">Xác nhận</a>
+	</div>
 	</div>
 	<footer class="site-footer">
 		<div class="container">

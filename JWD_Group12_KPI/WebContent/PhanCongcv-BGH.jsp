@@ -1,53 +1,31 @@
+<%@ page import="java.io.*,java.util.*,java.sql.*"%>
+<%@ page import="javax.servlet.http.*,javax.servlet.*" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Phân công công việc</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
  	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
- 	<style type="text/css">
- 		thead{
- 			background-color: #6600cc;
- 			color: white;
- 		}
- 		img{
- 			width: 100%;
- 			height: auto;
- 		}
- 		 .site-footer{
- 			background-color: #cccccc;
- 			margin-top: 30px;
- 			padding-bottom: 30px;
- 		}
- 		.bottom-footer{
- 			border-top: 1px solid |
- 			margin-top: 10px;
- 			padding-top: 20px;
- 			color: #000000;
- 		}
-		#footer{
- 			text-align: right;
- 			list-style: none;
- 		}
- 		#footer li{
- 			display:inline;
- 		}
- 		#footer li:not(:first-child):before{
- 			content: '|';
- 			padding:0px 10px
- 		}
- 		#footer a{
- 			color: #b2b2b2;
- 		}
- 		#footer a:hover{
- 			color: #4d4d4d;
- 		}
-	</style>
+	<link rel="stylesheet" type="text/css"  href="css/style.css">
 </head>
+<body>
+	    <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
+	    	    url="jdbc:mysql://localhost/db_kpi"
+	    	    user="root"  password="1672538Son"/>
+		<sql:query dataSource="${snapshot}" var="result">
+						SELECT * from members where uname = <%=session.getAttribute("userid")%>;
+		</sql:query>
+<div class="page-wrap">
+	<div class="header">
 	<div class="container" style="padding: 15px">
 		<div class="col-md-7 ">
 			<div class="logo">
@@ -63,30 +41,37 @@
  			</ul>
 		</div>
 	</div>
+	</div>
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
 		<ul class="nav navbar-nav">
 				<li><a class="navbar-brand" href="#"><span class="glyphicon glyphicon-home"></span>Trang chủ</a></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
-			<li><a href="#"><span class="glyphicon glyphicon-user"></span>Nguyễn Văn D</a></li>
+		    <c:forEach var="row" items="${result.rows}">
+			<li><a href="#"><span class="glyphicon glyphicon-user"><c:out value="${row.first_name} ${row.last_name}"/></span></a></li>
+			</c:forEach>
 			<li><a href="#"><span>Trang cá nhân</span></a></li>
 			<li><a href="LoginKPI.jsp"><span class="glyphicon glyphicon-log-out">Thoát</span></a></li>
 		</ul>
 	</div>
 </nav>
-<body>
+
+		<sql:query dataSource="${snapshot}" var="result">
+				SELECT * from members;
+		</sql:query>
+	<form name="addup" method="post" class="form-horizontal" action="addcvbgh.jsp" role="form">
 <div class="container">
 	<div class="form-group">
 		<div class="col-md-10">
 			<label for="usr">Tên công việc</label>
- 			<input type="text" class="form-control" id="usr">
+ 			<input type="text" class="form-control" name="td">
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="col-md-10">
 			 	<label for="comment">Nội dung công việc</label>
-  				<textarea class="form-control" rows="5" id="comment"></textarea>
+  				<textarea class="form-control" rows="5" name="nd"></textarea>
 		</div>
 	</div>
 </div>
@@ -98,40 +83,26 @@
 				<tr>
 					<th>Mã giảng viên</th>
 					<th>Tên giảng viên</th>
-					<th>Khoa</th>
+					<th>Chức vụ</th>
 					<th>Phân công</th>
 				</tr>
 			</thead>
+			<c:forEach var="row" items="${result.rows}">
 			<tbody>
 			<tr>
-				<td>123</td>
-				<td>Nguyễn Văn A</td>
-				<td>CNTT</td>
-				<td><input type="checkbox" name=""></td>
-			</tr>
-			<tr>
-				<td>456</td>
-				<td>Trần Thị B</td>
-				<td>Điện</td>
-				<td><input type="checkbox" name=""></td>
-			</tr>
-			<tr>
-				<td><h1></h1></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td><h1></h1></td>
-				<td> </td>
-				<td> </td>
-				<td></td>
+				<td><c:out value="${row.uname}"/></td>
+				<td><c:out value="${row.first_name} ${row.last_name}"/></td>
+				<td><c:out value="${row.chucvu}"/></td>
+				<td><input type="checkbox" name="dk" value="${row.uname}"></td>
 			</tr>
 			</tbody>
+			</c:forEach>
 		</table>
-		<a href="BGH.jsp" class="btn btn-success" role="button">Xác nhận</a>
+		<button type="submit" class="btn btn-primary">Xác nhận</button>
+		<a href="BGH.jsp" class="btn btn-warning" role="button">Hủy</a>
 	</div>
-
+	</form>
+	</div>
 	<footer class="site-footer">
 		<div class="container">
 			<div class="row">

@@ -1,3 +1,9 @@
+<%@ page import="java.io.*,java.util.*,java.sql.*"%>
+<%@ page import="javax.servlet.http.*,javax.servlet.*" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -9,47 +15,23 @@
  	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
- 	<style type="text/css">
- 		thead{
- 			background-color: #6600cc;
- 			color: white;
- 		}
- 		img{
- 			width: 100%;
- 			height: auto;
- 		}
- 		 .site-footer{
- 			background-color: #cccccc;
- 			margin-top: 30px;
- 			padding-bottom: 30px;
- 		}
- 		.bottom-footer{
- 			border-top: 1px solid |
- 			margin-top: 10px;
- 			padding-top: 20px;
- 			color: #000000;
- 		}
-		#footer{
- 			text-align: right;
- 			list-style: none;
- 		}
- 		#footer li{
- 			display:inline;
- 		}
- 		#footer li:not(:first-child):before{
- 			content: '|';
- 			padding:0px 10px
- 		}
- 		#footer a{
- 			color: #b2b2b2;
- 		}
- 		#footer a:hover{
- 			color: #4d4d4d;
- 		}
-	</style>
+	<link rel="stylesheet" type="text/css"  href="css/style.css">
+			<%
+				String id = request.getParameter("id");
+				session.setAttribute("id", id);
+			%>
 </head>
+<body>
+	    <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
+	    	    url="jdbc:mysql://localhost/db_kpi"
+	    	    user="root"  password="1672538Son"/>
+		<sql:query dataSource="${snapshot}" var="result">
+						SELECT * from members where uname = <%=session.getAttribute("userid")%>;
+		</sql:query>
+<div class="page-wrap">
+	<div class="header">
 	<div class="container" style="padding: 15px">
-		<div class="col-md-7">
+		<div class="col-md-7 ">
 			<div class="logo">
 				<img src="img/logo.png" >
 			</div>
@@ -63,71 +45,60 @@
  			</ul>
 		</div>
 	</div>
+	</div>
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
 		<ul class="nav navbar-nav">
 				<li><a class="navbar-brand" href="#"><span class="glyphicon glyphicon-home"></span>Trang chủ</a></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
-			<li><a href="#"><span class="glyphicon glyphicon-user"></span>Nguyễn Văn D</a></li>
+		    <c:forEach var="row" items="${result.rows}">
+			<li><a href="#"><span class="glyphicon glyphicon-user"><c:out value="${row.first_name} ${row.last_name}"/></span></a></li>
+			</c:forEach>
 			<li><a href="LoginKPI.jsp"><span class="glyphicon glyphicon-log-out">Thoát</span></a></li>
 		</ul>
 	</div>
 </nav>
-<body>
+
+
+		<sql:query dataSource="${snapshot}" var="result">
+						SELECT * from members where uname = <%=session.getAttribute("id")%>;
+		</sql:query>
 	<div class="container">
-		<div class="well" style="width: 15%"><a href="#" class="glyphicon glyphicon-user">Nguyễn Văn A</a></div>
+		<c:forEach var="row" items="${result.rows}">
+		<div class="well" style="width: 15%"><a href="#" class="glyphicon glyphicon-user"><c:out value="${row.first_name} ${row.last_name}"/></a></div>
+		</c:forEach>
 		<h3>Chi tiết KPI</h3>
+		<sql:query dataSource="${snapshot}" var="result">
+		SELECT * from dkkpi d1 inner join danhsachbm d2 on d1.makpi=d2.makpi where magv =<%=session.getAttribute("id")%> ;
+		</sql:query>
 		<table class="table table-bordered table-striped">
 			<thead>
 				<tr>
+					<th>Mã KPI</th>
 					<th>Mục tiêu</th>
 					<th>Nội dung chi tiết</th>
-					<th>Phương pháp</th>
-					<th>Nguồn lực</th>
+					<th>Điểm KPI max</th>
+					<th>Chỉ tiêu đăng ký</th>
 					<th>Thời gian thực hiện</th>
 				</tr>
 			</thead>
+			<c:forEach var="row" items="${result.rows}">
 			<tbody>
 			<tr>
-				<td>Giảng dạy đủ số tiết/tuần</td>
-				<td>Dạy đủ 120 tiết</td>
-				<td>Sắp xếp thời gian hợp lý</td>
-				<td>Hiện có</td>
-				<td>28/8/2016 - 28/11/2016</td>
-			</tr>
-			<tr>
-				<td><h1></h1></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td><h1></h1></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td><h1></h1></td>
-				<td> </td>
-				<td> </td>
-				<td></td>
-				<td></td>
-			</tr>
-			<tr>
-				<td><h1></h1></td>
-				<td> </td>
-				<td> </td>
-				<td></td>
-				<td></td>
+				<td><c:out value="${row.makpi}"/></td>
+				<td><c:out value="${row.muctieu}"/></td>
+				<td><c:out value="${row.noidung}"/></td>
+				<td><c:out value="${row.dkpimax}"/></td>
+				<td><c:out value="${row.ctdk}"/></td>
+				<td><c:out value="${row.tgbd} : ${row.tgkt}"/></td>
 			</tr>
 			</tbody>
+			</c:forEach>
 		</table>
+		<a href="PTCCB.jsp" class="btn btn-success" role="button">Trở lại</a>
 	</div>
-	
+</div>
 		<footer class="site-footer">
 		<div class="container">
 			<div class="row">

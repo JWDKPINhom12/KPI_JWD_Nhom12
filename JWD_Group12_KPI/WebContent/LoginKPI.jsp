@@ -49,22 +49,22 @@
               <div class="radio">   
                 <form id="form-login" action="LoginAction.jsp" method="POST" role="form">       
                   <label style="margin-right: 15px">
-                   <input type="radio" name="content" value='ad'><a href="Admin.jsp">Admin</a>
+                   <input type="radio" name="content" value='ad'><a href="#">Admin</a>
                   </label> 
                   <label style="margin-right: 15px">
-                    <input type="radio" name="content" value='gv'><a href="GiangVien.jsp">Giảng viên</a>
+                    <input type="radio" name="content" value='gv'><a href="#">Giảng viên</a>
                   </label>
                   <label style="margin-right: 15px">
-                    <input type="radio" name="content" value='tbm'><a href="TruongBoMon.jsp">Trưởng bộ môn</a>
+                    <input type="radio" name="content" value='tbm'><a href="#">Trưởng bộ môn</a>
                   </label>            
                   <label style="margin-right: 15px">
-                    <input type="radio" name="content" value='tk'><a href="TruongKhoa.jsp">Trưởng khoa</a>
+                    <input type="radio" name="content" value='tk'><a href="#">Trưởng khoa</a>
                   </label>
                   <label style="margin-right: 15px">
-                    <input type="radio" name="content" value='bgh'><a href="BGH.jsp">Ban giám hiệu</a>
+                    <input type="radio" name="content" value='bgh'><a href="#">Ban giám hiệu</a>
                   </label>
                   <label style="margin-right: 15px">
-                    <input type="radio" name="content" value='ptc'><a href="PTCCB.jsp">Phòng Tổ chức-Cán bộ</a>
+                    <input type="radio" name="content" value='ptc'><a href="#">Phòng Tổ chức-Cán bộ</a>
                   </label>
               </div>
 

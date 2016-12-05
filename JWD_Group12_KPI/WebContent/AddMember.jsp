@@ -9,6 +9,7 @@
 <body>
 	<%@ page import ="java.sql.*" %>
 	<%
+		request.setCharacterEncoding("UTF-8");
 	 	String user = request.getParameter("uname");    
 	   	String pwd = request.getParameter("pass");
 	    String fn = request.getParameter("fn");

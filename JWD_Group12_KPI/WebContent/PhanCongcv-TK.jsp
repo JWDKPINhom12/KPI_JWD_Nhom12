@@ -58,9 +58,9 @@
 </nav>
 
 		<sql:query dataSource="${snapshot}" var="result">
-				SELECT * from members where chucvu = "gv";
+				SELECT * from members where chucvu = "gv" or chucvu = "tbm";
 		</sql:query>
-	<form name="addup" method="post" class="form-horizontal" action="addcvtbm.jsp" role="form">
+	<form name="addup" method="post" class="form-horizontal" action="addcvtk.jsp" role="form">
 <div class="container">
 	<div class="form-group">
 		<div class="col-md-10">
@@ -97,7 +97,7 @@
 			</c:forEach>
 		</table>
 		<button type="submit" class="btn btn-primary">Xác nhận</button>
-		<a href="TruongBoMon.jsp" class="btn btn-warning" role="button">Hủy</a>
+		<a href="TruongKhoa.jsp" class="btn btn-warning" role="button">Hủy</a>
 	</div>
 	</form>
 	</div>

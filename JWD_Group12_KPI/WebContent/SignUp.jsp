@@ -1,3 +1,9 @@
+<%@ page import="java.io.*,java.util.*,java.sql.*"%>
+<%@ page import="javax.servlet.http.*,javax.servlet.*" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -9,45 +15,18 @@
  	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
- 	<style type="text/css">
- 		thead{
- 			background-color: #6600cc;
- 			color: white;
- 		}
- 		img{
- 			width: 100%;
- 			height: auto;
- 		}
- 		 .site-footer{
- 			background-color: #cccccc;
- 			margin-top: 30px;
- 			padding-bottom: 30px;
- 		}
- 		.bottom-footer{
- 			border-top: 1px solid |
- 			margin-top: 10px;
- 			padding-top: 20px;
- 			color: #000000;
- 		}
-		#footer{
- 			text-align: right;
- 			list-style: none;
- 		}
- 		#footer li{
- 			display:inline;
- 		}
- 		#footer li:not(:first-child):before{
- 			content: '|';
- 			padding:0px 10px
- 		}
- 		#footer a{
- 			color: #b2b2b2;
- 		}
- 		#footer a:hover{
- 			color: #4d4d4d;
- 		}
-	</style>
+	<link rel="stylesheet" type="text/css"  href="css/style.css">
 </head>
+<body>
+	    <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
+	    	    url="jdbc:mysql://localhost/db_kpi"
+	    	    user="root"  password="1672538Son"/>
+
+		<sql:query dataSource="${snapshot}" var="result">
+						SELECT * from members where uname = <%=session.getAttribute("userid")%>;
+		</sql:query>
+<div class="page-wrap">
+	<div class="header">
 	<div class="container" style="padding: 15px">
 		<div class="col-md-7 ">
 			<div class="logo">
@@ -63,18 +42,21 @@
  			</ul>
 		</div>
 	</div>
+	</div>
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
 		<ul class="nav navbar-nav">
 				<li><a class="navbar-brand" href="#"><span class="glyphicon glyphicon-home"></span>Trang chủ</a></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right">
-			<li><a href="#"><span class="glyphicon glyphicon-user"></span>Nguyễn Văn A</a></li>
+		    <c:forEach var="row" items="${result.rows}">
+			<li><a href="#"><span class="glyphicon glyphicon-user"><c:out value="${row.first_name} ${row.last_name}"/></span></a></li>
+			</c:forEach>
 			<li><a href="LoginKPI.jsp"><span class="glyphicon glyphicon-log-out">Thoát</span></a></li>
 		</ul>
 	</div>
 </nav>
-<body>
+
 <div class="container">
 <form method="post" class="form-horizontal" id="signup" action="AddMember.jsp" role="form">
 <fieldset>
@@ -183,7 +165,7 @@
 </form>
 </div>
 
-
+</div>
 	<footer class="site-footer">
 		<div class="container">
 			<div class="row">

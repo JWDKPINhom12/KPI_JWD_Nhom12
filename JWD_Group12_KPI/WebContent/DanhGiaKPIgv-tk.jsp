@@ -10,14 +10,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Phân công công việc</title>
+<title>Đánh giá KPI</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
  	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css"  href="css/style.css">
+
 </head>
 <body>
+			<%
+				String id = request.getParameter("id");
+				session.setAttribute("id", id);
+			%>
 	    <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
 	    	    url="jdbc:mysql://localhost/db_kpi"
 	    	    user="root"  password="1672538Son"/>
@@ -51,56 +56,66 @@
 		    <c:forEach var="row" items="${result.rows}">
 			<li><a href="#"><span class="glyphicon glyphicon-user"><c:out value="${row.first_name} ${row.last_name}"/></span></a></li>
 			</c:forEach>
-			<li><a href="#"><span>Trang cá nhân</span></a></li>
 			<li><a href="LoginKPI.jsp"><span class="glyphicon glyphicon-log-out">Thoát</span></a></li>
 		</ul>
 	</div>
 </nav>
-
 		<sql:query dataSource="${snapshot}" var="result">
-				SELECT * from members where chucvu = "gv";
+						SELECT * from members where uname = <%=session.getAttribute("id")%>;
 		</sql:query>
-	<form name="addup" method="post" class="form-horizontal" action="addcvtbm.jsp" role="form">
-<div class="container">
-	<div class="form-group">
-		<div class="col-md-10">
-			<label for="usr">Tên công việc</label>
- 			<input type="text" class="form-control" name="td">
-		</div>
-	</div>
-	<div class="form-group">
-		<div class="col-md-10">
-			 	<label for="comment">Nội dung công việc</label>
-  				<textarea class="form-control" rows="5" name="nd"></textarea>
-		</div>
-	</div>
-</div>
 
-<div class="container">
-		<h3>Danh sách phân công</h3>
+	<div class="container">
+		<form method="post" class="form-horizontal" action="adddgtk.jsp" role="form">
+		<c:forEach var="row" items="${result.rows}">
+		<div class="well" style="width: 15%"><a href="#" class="glyphicon glyphicon-user"><c:out value="${row.first_name} ${row.last_name}"/></a></div>
+		</c:forEach>
+		<h3>Đánh giá</h3>
+		<sql:query dataSource="${snapshot}" var="result">
+		SELECT * from dkkpi d1 inner join danhsachbm d2 on d1.makpi=d2.makpi where magv =<%=session.getAttribute("id")%> ;
+		</sql:query>
 		<table class="table table-bordered table-striped">
 			<thead>
 				<tr>
-					<th>Mã giảng viên</th>
-					<th>Tên giảng viên</th>
-					<th>Phân công</th>
+					<th></th>
+					<th>Mục tiêu</th>
+					<th>Điểm KPI tối đa</th>
+					<th>Chỉ tiêu đăng ký</th>
+					<th>Điểm tự đánh giá</th>
+					<th>Điểm cấp trên đánh giá</th>
+					<th>Nhận xét</th>
 				</tr>
 			</thead>
 			<c:forEach var="row" items="${result.rows}">
 			<tbody>
 			<tr>
-				<td><c:out value="${row.uname}"/></td>
-				<td><c:out value="${row.first_name} ${row.last_name}"/></td>
-				<td><input type="checkbox" name="dk" value="${row.uname}"></td>
+				<td><input type="checkbox" name="dk" value="${row.makpi}"></td>
+				<td><c:out value="${row.muctieu}"/></td>
+				<td><c:out value="${row.dkpimax}"/></td>
+				<td><c:out value="${row.ctdk}"/></td>
+				<td><c:out value="${row.dtdg}"/></td>
+				<td><c:out value="${row.dctdg}"/></td>
+				<td><c:out value="${row.nx}"/></td>
 			</tr>
 			</tbody>
 			</c:forEach>
 		</table>
-		<button type="submit" class="btn btn-primary">Xác nhận</button>
-		<a href="TruongBoMon.jsp" class="btn btn-warning" role="button">Hủy</a>
+		<div class="form-group">
+			<div>
+			 	<label for="comment">Nhập điểm</label>
+ 				<input name="dctdg" type="text" class="form-control input-md" style="width: 15%">
+			</div>
+		</div>
+		<div class="form-group">
+			<div>
+			 	<label for="comment">Nhận Xét</label>
+  				<textarea name="nx" class="form-control" rows="5" id="comment"></textarea>
+			</div>
+		</div>
+		<button type="submit" class="btn btn-success" >Xác nhận</button>
+		<a href="TruongKhoa.jsp" class="btn btn-warning" role="button">Hủy</a>
+		</form>
 	</div>
-	</form>
-	</div>
+</div>	
 	<footer class="site-footer">
 		<div class="container">
 			<div class="row">
@@ -114,6 +129,6 @@
 			</div>
 		</div>
 	</footer>
-
+	
 </body>
 </html>

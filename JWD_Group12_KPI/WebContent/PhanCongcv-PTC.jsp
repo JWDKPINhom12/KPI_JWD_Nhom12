@@ -58,9 +58,9 @@
 </nav>
 
 		<sql:query dataSource="${snapshot}" var="result">
-				SELECT * from members where chucvu = "gv";
+				SELECT * from members;
 		</sql:query>
-	<form name="addup" method="post" class="form-horizontal" action="addcvtbm.jsp" role="form">
+	<form name="addup" method="post" class="form-horizontal" action="addcvptc.jsp" role="form">
 <div class="container">
 	<div class="form-group">
 		<div class="col-md-10">
@@ -83,6 +83,7 @@
 				<tr>
 					<th>Mã giảng viên</th>
 					<th>Tên giảng viên</th>
+					<th>Chức vụ</th>
 					<th>Phân công</th>
 				</tr>
 			</thead>
@@ -91,13 +92,14 @@
 			<tr>
 				<td><c:out value="${row.uname}"/></td>
 				<td><c:out value="${row.first_name} ${row.last_name}"/></td>
+				<td><c:out value="${row.chucvu}"/></td>
 				<td><input type="checkbox" name="dk" value="${row.uname}"></td>
 			</tr>
 			</tbody>
 			</c:forEach>
 		</table>
 		<button type="submit" class="btn btn-primary">Xác nhận</button>
-		<a href="TruongBoMon.jsp" class="btn btn-warning" role="button">Hủy</a>
+		<a href="PTCCB.jsp" class="btn btn-warning" role="button">Hủy</a>
 	</div>
 	</form>
 	</div>

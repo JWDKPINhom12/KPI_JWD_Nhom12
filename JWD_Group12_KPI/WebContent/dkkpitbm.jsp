@@ -4,23 +4,36 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Phân công công việc</title>
+<title>Đăng ký KPI</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
  	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css"  href="css/style.css">
+<script>
+function generateReportU(){
+   document.forms['addup'].action = 'updiemtbm.jsp';
+   document.forms['addup'].submit();
+}
+
+function generateReportA(){
+   document.forms['addup'].action = 'Addkpitbm.jsp';
+   document.forms['addup'].submit();
+}
+</script>
 </head>
 <body>
 	    <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
 	    	    url="jdbc:mysql://localhost/db_kpi"
 	    	    user="root"  password="1672538Son"/>
+
 		<sql:query dataSource="${snapshot}" var="result">
 						SELECT * from members where uname = <%=session.getAttribute("userid")%>;
 		</sql:query>
@@ -51,57 +64,52 @@
 		    <c:forEach var="row" items="${result.rows}">
 			<li><a href="#"><span class="glyphicon glyphicon-user"><c:out value="${row.first_name} ${row.last_name}"/></span></a></li>
 			</c:forEach>
-			<li><a href="#"><span>Trang cá nhân</span></a></li>
 			<li><a href="LoginKPI.jsp"><span class="glyphicon glyphicon-log-out">Thoát</span></a></li>
 		</ul>
 	</div>
 </nav>
 
 		<sql:query dataSource="${snapshot}" var="result">
-				SELECT * from members where chucvu = "gv";
+		SELECT * from danhsachbm;
 		</sql:query>
-	<form name="addup" method="post" class="form-horizontal" action="addcvtbm.jsp" role="form">
-<div class="container">
-	<div class="form-group">
-		<div class="col-md-10">
-			<label for="usr">Tên công việc</label>
- 			<input type="text" class="form-control" name="td">
-		</div>
-	</div>
-	<div class="form-group">
-		<div class="col-md-10">
-			 	<label for="comment">Nội dung công việc</label>
-  				<textarea class="form-control" rows="5" name="nd"></textarea>
-		</div>
-	</div>
-</div>
-
-<div class="container">
-		<h3>Danh sách phân công</h3>
+	<div class="container">
+	<form name="addup" method="post" class="form-horizontal" action="" role="form">
+		<h3>Đăng ký KPI</h3>
 		<table class="table table-bordered table-striped">
 			<thead>
 				<tr>
-					<th>Mã giảng viên</th>
-					<th>Tên giảng viên</th>
-					<th>Phân công</th>
+					<th>Đăng ký</th>
+					<th>Mã KPI</th>
+					<th>Mục tiêu</th>
+					<th>Nội dung chi tiết</th>
+					<th>Điểm KPI max</th>
+					<th>Chỉ tiêu đăng ký</th>
+					<th>Thời gian thực hiện</th>
 				</tr>
 			</thead>
 			<c:forEach var="row" items="${result.rows}">
 			<tbody>
 			<tr>
-				<td><c:out value="${row.uname}"/></td>
-				<td><c:out value="${row.first_name} ${row.last_name}"/></td>
-				<td><input type="checkbox" name="dk" value="${row.uname}"></td>
+				<td><input type="checkbox" name="dk" value="${row.makpi}"></td>
+				<td><c:out value="${row.makpi}"/></td>
+				<td><c:out value="${row.muctieu}"/></td>
+				<td><c:out value="${row.noidung}"/></td>
+				<td><c:out value="${row.dkpimax}"/></td>
+				<td><c:out value="${row.ctdk}"/></td>
+				<td><c:out value="${row.tgbd} : ${row.tgkt}"/></td>
 			</tr>
 			</tbody>
 			</c:forEach>
 		</table>
-		<button type="submit" class="btn btn-primary">Xác nhận</button>
+		<button type="submit" class="btn btn-primary" onclick="generateReportA();" >Xác nhận</button>
 		<a href="TruongBoMon.jsp" class="btn btn-warning" role="button">Hủy</a>
+		<p></p>
+		<input name="dtdg" type="text" class="form-control input-md" style="width: 15%" placeholder="Nhập điểm">
+		<button type="submit" class="btn btn-info" onclick="generateReportU();">Cập nhật</button>
+		</form>
 	</div>
-	</form>
-	</div>
-	<footer class="site-footer">
+</div>	
+		<footer class="site-footer">
 		<div class="container">
 			<div class="row">
 				<div class="bottom-footer">
@@ -114,6 +122,6 @@
 			</div>
 		</div>
 	</footer>
-
+	
 </body>
 </html>
