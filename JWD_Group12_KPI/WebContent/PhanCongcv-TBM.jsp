@@ -19,7 +19,7 @@
 </head>
 <body>
 	    <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
-	    	    url="jdbc:mysql://localhost/db_kpi"
+	    	    url="jdbc:mysql://localhost:3306/db_kpi"
 	    	    user="root"  password="1672538Son"/>
 		<sql:query dataSource="${snapshot}" var="result">
 						SELECT * from members where uname = <%=session.getAttribute("userid")%>;
@@ -91,7 +91,7 @@
 			<tr>
 				<td><c:out value="${row.uname}"/></td>
 				<td><c:out value="${row.first_name} ${row.last_name}"/></td>
-				<td><input type="checkbox" name="dk" value="${row.uname}"></td>
+				<td><input type="radio" name="dk" value="${row.uname}"></td>
 			</tr>
 			</tbody>
 			</c:forEach>
@@ -100,7 +100,7 @@
 		<a href="TruongBoMon.jsp" class="btn btn-warning" role="button">Hủy</a>
 	</div>
 	</form>
-	</div>
+	</div>			
 	<footer class="site-footer">
 		<div class="container">
 			<div class="row">

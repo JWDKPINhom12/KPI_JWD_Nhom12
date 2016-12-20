@@ -1,5 +1,7 @@
+<%@ page import ="java.sql.*" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -23,7 +25,7 @@
 	    if(dk!= null && result > 0)
 	    {
 	    //ResultSet rs;
-        int i = st.executeUpdate("update dkkpi set nx = "+"\"" + nx + "\"" +", dctdg = "+ dctdg +" where magv = "+ magv +" and makpi = "+ dk +"");
+        int i = st.executeUpdate("update dkkpi set nx = '" + nx + "', dctdg = '"+ dctdg +"' where magv = '"+ magv +"' and makpi = '"+ dk +"'");
 	    if (i > 0 ) {
 	        out.print("Add Successfull!"+"<a href='TruongBoMon.jsp'>Go back</a>");
 	    } else {

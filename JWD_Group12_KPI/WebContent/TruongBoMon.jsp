@@ -16,16 +16,44 @@
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css"  href="css/style.css">
-
+	
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+   <link rel="shortcut icon" type="image/png" href="/media/images/favicon.png">
+   <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.datatables.net/rss.xml">
+   <link rel="stylesheet" type="text/css" href="/media/css/site-examples.css?_=b05357026107a2e3ca397f642d976192">
+   <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css">
+   <script type="text/javascript" async="" src="https://ssl.google-analytics.com/ga.js"></script><script type="text/javascript" src="/media/js/site.js?_=9a83ad61fa12260d710e54eb5f3203dc"></script>
+   <script type="text/javascript" src="/media/js/dynamic.php?comments-page=examples%2Fstyling%2Fbootstrap.html" async=""></script>
+   <script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.12.4.js"></script>
+   <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+   <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
+   <script type="text/javascript" language="javascript" src="../resources/demo.js"></script>
+   <script type="text/javascript" class="init">
+      $(document).ready(function() {
+      	$('#example').DataTable();
+      } );
+      
+      	
+   </script>
+     <script type="text/javascript" class="init">
+      $(document).ready(function() {
+      	$('#example2').DataTable();
+      } );
+      
+      	
+   </script>
 </head>
 <body>
-	    <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
-	    	    url="jdbc:mysql://localhost/db_kpi"
+	     <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
+	    	    url="jdbc:mysql://localhost:3306/db_kpi"
 	    	    user="root"  password="1672538Son"/>
-
-		<sql:query dataSource="${snapshot}" var="result">
-						SELECT * from members where uname = <%=session.getAttribute("userid")%>;
-		</sql:query>
+	    	    
+	    	   	<sql:query dataSource="${snapshot}" var="result">
+				SELECT *
+				from members
+				where uname =<%=session.getAttribute("userid") %>;
+			</sql:query>
 <div class="page-wrap">
 	<div class="header">
 	<div class="container" style="padding: 15px">
@@ -62,193 +90,138 @@
  		<ul class="nav nav-tabs">
   			<li class="active"><a data-toggle="pill" href="#kpigv">KPI Giảng viên</a></li>
   			<li><a data-toggle="pill" href="#kpicn">KPI cá nhân</a></li>
-  		 	<li><a data-toggle="pill" href="#pccv">Phân công công việc</a></li>
+  		 	<li ><a data-toggle="pill" href="#pccv">Phân công công việc</a></li>
  		</ul>
 	<div class="tab-content">
-   	<div id="kpigv" class="tab-pane fade in active">
-		<div class="container">
-			<div class="dropdown">
-				<div class="col-md-1 col-md-offset-8">
-					<button class=" btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Sắp xếp<span class="caret"></span></button>
-						<ul class="dropdown-menu">
-							<li><a href="#">Tên</a></li>
-							<li><a href="#">Ngày đăng ký</a></li>
-							<li><a href="#">Duyệt</a></li>	
-						</ul>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-3">
-					<form action="" class="search-form">
-						<div class="form-group has-feedback">
-							<label for="search" class="sr-only">Search</label>
-							<input type="text" class="form-control" name="search" id="search" placeholder="search">
-							<span class="glyphicon glyphicon-search form-control-feedback"></span>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-
-
-		<sql:query dataSource="${snapshot}" var="result">
-		SELECT distinct uname,first_name,last_name,duyet from dkkpi d1 inner join members d2 on d1.magv=d2.uname where chucvu = "gv";
-		</sql:query>
-		<div class="container">
-		<h3>KPI Giảng Viên</h3>
-		<table class="table table-bordered table-striped">
-			<thead>
-				<tr>
-					<th>Mã giảng viên</th>
-					<th>Tên giảng viên</th>
-					<th>Chi tiết</th>
-					<th>Duyệt</th>
-					<th>Đánh giá</th>
-				</tr>
-			</thead>
-			<c:forEach var="row" items="${result.rows}">
-			<tbody>
-			<tr>
-				<td><c:out value="${row.uname}"/></td>
-				<td><c:out value="${row.first_name} ${row.last_name}"/></td>
-				<td><a href="ChiTietKPIgv-TBM.jsp?id=${row.uname}">xem</a></td>
-				<td><span class="${row.duyet}"></span></td>
-				<td><a href="DanhGiaKPIgv-TBM.jsp?id=${row.uname}">xem</a></td>
-			</tr>
-			</tbody>
-			</c:forEach>
-		</table>
-	</div>
-</div>
-
-
-   	<div id="kpicn" class="tab-pane fade">
-		<div class="container">
-			<div class="dropdown">
-				<div class="col-md-1 col-md-offset-8">
-					<button class=" btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Sắp xếp<span class="caret"></span></button>
-						<ul class="dropdown-menu">
-							<li><a href="#">Tên</a></li>
-							<li><a href="#">Ngày đăng ký</a></li>
-							<li><a href="#">Duyệt</a></li>	
-						</ul>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-3">
-					<form action="" class="search-form">
-						<div class="form-group has-feedback">
-							<label for="search" class="sr-only">Search</label>
-							<input type="text" class="form-control" name="search" id="search" placeholder="search">
-							<span class="glyphicon glyphicon-search form-control-feedback"></span>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-
-
-	<div class="container">
-
-		<sql:query dataSource="${snapshot}" var="result">
-				SELECT * from dkkpi d1 inner join danhsachbm d2 on d1.makpi=d2.makpi where magv =<%=session.getAttribute("userid")%> ;
-		</sql:query>
-		<h3>Danh sách KPI đăng ký</h3>
-		<table class="table table-bordered table-striped">
-			<thead>
-				<tr>
-					<th>Mã KPI</th>
-					<th>Mục tiêu</th>
-					<th>Nội dung chi tiết</th>
-					<th>Thời gian thực hiện</th>
-					<th>Chỉ tiêu đăng ký</th>
-					<th>Duyệt</th>
-					<th>Điểm KPI max</th>
-					<th>Điểm tự đánh giá</th>
-					<th>Điểm cấp trên đánh giá</th>
-					<th>Nhận xét</th>
-				</tr>
-			</thead>
-        <c:forEach var="row" items="${result.rows}">
-			<tbody>
-
-			<tr>
-				<td><c:out value="${row.makpi}"/></td>
-				<td><c:out value="${row.muctieu}"/></td>
-				<td><c:out value="${row.noidung}"/></a></td>
-				<td><c:out value="${row.tgbd} : ${row.tgkt}"/></td>
-				<td><c:out value="${row.ctdk}"/></td>
-				<td><span class="${row.duyet}"></span></td>
-				<td><c:out value="${row.dkpimax}"/></td>
-				<td><c:out value="${row.dtdg}"/></td>
-				<td><c:out value="${row.dctdg}"/></td>
-				<td><c:out value="${row.nx}"/></td>
-			</tr>
+		   	<div id="kpigv" class="tab-pane fade in active">
 			
-			</tbody>
-			</c:forEach>
-		</table>
-		<a href="dkkpitbm.jsp" class="btn btn-info" role="button">Đăng ký</a>
+				<sql:query dataSource="${snapshot}" var="result1">
+										SELECT uname,first_name,last_name,duyet,d2.makpi
+										 from members d1 join dkkpi d2 on d1.uname=d2.magv
+										 where uname <> <%=session.getAttribute("userid")%>;
+					</sql:query>
+				<div class="container">
+				<h3>KPI Giảng Viên</h3>
+				 <table id="example" class="table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;">
+					<thead>
+						<tr>
+							<th>Mã giảng viên</th>
+							<th>Tên giảng viên</th>
+							<th>Chi tiết</th>
+							<th>Duyệt</th>
+							<th>Đánh giá</th>
+						</tr>
+					</thead>
+					<tbody>
+					<c:forEach var="row" items="${result1.rows}">
+					<tr>
+						<td><c:out value="${row.uname}"/></td>
+						<td><c:out value="${row.first_name} ${row.last_name}"/></td>
+						<td><a href="ChiTietKPIgv-TBM.jsp?kpi=${row.makpi}&id=${row.uname}">xem</a></td>
+						<td><span class="${row.duyet}"></span></td>
+						<td><a href="DanhGiaKPIgv-TBM.jsp?kpi=${row.makpi}&id=${row.uname}">xem</a></td>
+					</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+		</div>
 
-	</div>
+
+	   	<div id="kpicn" class="tab-pane fade">
+			
+		<sql:query dataSource="${snapshot}" var="result2">
+					SELECT d1.makpi,muctieu,noidung,tgbd,tgkt,dkpimax,dtdg,dctdg,nx,duyet,ctdk
+					 from dkkpi d1 inner join danhsachbm d2 on d1.makpi=d2.makpi
+					 where magv =<%=session.getAttribute("userid")%> ;
+			</sql:query>
+		<div class="container">
+			<h3>Danh sách KPI đăng ký</h3>
+		<form action="updiemtbm.jsp" method="post">
+			<table class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th></th>
+						<th>Mã KPI</th>
+						<th>Mục tiêu</th>
+						<th>Nội dung chi tiết</th>
+						<th>Thời gian thực hiện</th>
+						<th>Chỉ tiêu đăng ký</th>
+						<th>Duyệt</th>
+						<th>Điểm KPI max</th>
+						<th>Điểm tự đánh giá</th>
+						<th>Điểm cấp trên đánh giá</th>
+						<th>Nhận xét</th>
+					</tr>
+				</thead>
+	        <c:forEach var="row" items="${result2.rows}">
+				<tbody>
+	
+				<tr>
+					<td><input type="radio" name="dk" value="${row.makpi}"></td>
+					<td><c:out value="${row.makpi}"/></td>
+					<td><c:out value="${row.muctieu}"/></td>
+					<td><c:out value="${row.noidung}"/></a></td>
+					<td><c:out value="${row.tgbd} : ${row.tgkt}"/></td>
+					<td><c:out value="${row.ctdk}"/></td>
+					<td><span class="${row.duyet}"></span></td>
+					<td><c:out value="${row.dkpimax}"/></td>
+					<td><c:out value="${row.dtdg}"/></td>
+					<td><c:out value="${row.dctdg}"/></td>
+					<td><c:out value="${row.nx}"/></td>
+				</tr>
+				
+				</tbody>
+				</c:forEach>
+			</table>
+			 	<div class="form-group">
+			<div>
+			 	<label for="comment">Điểm tự đánh giá</label>
+ 				<input name="dtdg" type="text" class="form-control input-md" style="width: 15%">
+			</div>
+			</div>
+			<button type="submit" class="btn btn-success" >Xác nhận</button>
+			
+			<a href="dkkpitbm.jsp" class="btn btn-info" role="button">Đăng ký</a>
+			
+		</form>
 </div>
-		<sql:query dataSource="${snapshot}" var="result">
+</div>
+    <div id="pccv" class="tab-pane fade">
+		<sql:query dataSource="${snapshot}" var="result3">
 				SELECT * from pccv p inner join members m on p.magv=m.uname where chucvu = "gv";
 		</sql:query>
-    <div id="pccv" class="tab-pane fade">
-
-		<div class="container">
-			<div class="dropdown">
-				<div class="col-md-1 col-md-offset-8">
-					<button class=" btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Sắp xếp<span class="caret"></span></button>
-						<ul class="dropdown-menu">
-							<li><a href="#">Tên</a></li>
-							<li><a href="#">Khoa</a></li>
-							<li><a href="#">Công việc</a></li>	
-						</ul>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-3">
-					<form action="" class="search-form">
-						<div class="form-group has-feedback">
-							<label for="search" class="sr-only">Search</label>
-							<input type="text" class="form-control" name="search" id="search" placeholder="search">
-							<span class="glyphicon glyphicon-search form-control-feedback"></span>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-
 	<div class="container">
 		<h3>Phân công</h3>
-		<table class="table table-bordered table-striped">
+		 <table id="example2" class="table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;">
 			<thead>
 				<tr>
-					<th>Mã giảng viên</th>
-					<th>Tên giảng viên</th>
-					<th>Tên công việc</th>
-					<th>Nộ dung</th>
-					<th>Ngày phân công</th>
+					<th class="sorting">Mã giảng viên</th>
+					<th class="sorting">Tên công việc</th>
+					<th class="sorting">Công việc</th>
+					<th class="sorting">Nội dung</th>
+					<th class="sorting">Ngày phân công</th>
 				</tr>
 			</thead>
-			<c:forEach var="row" items="${result.rows}">
+			
 			<tbody>
-			<tr>
-				<td><c:out value="${row.magv}"/></td>
-				<td><c:out value="${row.first_name} ${row.last_name}"/></td>
-				<td><c:out value="${row.tieude}"/></td>
-				<td><c:out value="${row.nd}"/></td>
-				<td><c:out value="${row.regdate}"/></td>
-			</tr>
-			</tbody>
+			<c:forEach var="row" items="${result3.rows}">
+				<tr>
+					<td><c:out value="${row.magv}"/></td>
+					<td><c:out value="${row.first_name} ${row.last_name}"/></td>
+					<td><c:out value="${row.tieude}"/></td>
+					<td><c:out value="${row.nd}"/></td>
+					<td><c:out value="${row.regdate}"/></td>
+				</tr>
 			</c:forEach>
+			</tbody>
+		
 		</table>
 	</div>
 	<a href="PhanCongcv-TBM.jsp" class="btn btn-primary" role="button">Thêm công việc</a>
     </div>
-  </div>
+
+</div>
 </div>
 </div>
 	<footer class="site-footer">

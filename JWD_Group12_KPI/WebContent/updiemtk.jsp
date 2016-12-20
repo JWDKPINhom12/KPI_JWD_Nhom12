@@ -24,13 +24,13 @@
 	    //ResultSet rs;
         int i = st.executeUpdate("update dkkpi set dtdg = "+ dtdg + " where magv = "+ magv +" and makpi = "+ dk +"");
 	    if (i > 0 ) {
-	        out.print("Add Successfull!"+"<a href='dkkpitk.jsp'>Go back</a>");
+	        out.print("Add Successfull!"+"<a href='TruongKhoa.jsp'>Go back</a>");
 	    } else {
-	        out.print("Add fail!"+"<a href='dkkpitk.jsp'>Go back</a>");
+	        out.print("Add fail!"+"<a href='TruongKhoa.jsp'>Go back</a>");
 	    }
 	    }
 	    else{
-	    	out.print("!!!"+"<a href='dkkpitk.jsp'>Go back</a>");
+	    	out.print("!!!"+"<a href='TruongKhoa.jsp'>Go back</a>");
 	    }
 	}
 	catch (Exception e){

@@ -11,29 +11,21 @@
 	<%
 	try{
 		request.setCharacterEncoding("UTF-8");
-	   	String nd = request.getParameter("nd");
-	    String td = request.getParameter("td");
-	 	String dk = request.getParameter("dk");
-	 	
+	 	String id = request.getParameter("id");
+	 	String td = request.getParameter("td");;
 	    Class.forName("com.mysql.jdbc.Driver");
 	    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_kpi?characterEncoding=UTF-8",
 	            "root", "1672538Son");
 	    Statement st = con.createStatement();
 
-	    if(dk!= null)
-	    {
 	    //ResultSet rs;
-        int i = st.executeUpdate("insert into pccv(magv,tieude,nd,regdate1) values('"+ dk +"','"+ td+"', '"+ nd +"',CURDATE())");
+        int i = st.executeUpdate("update pccv set tiendo = "+"\"" + td + "\"" +" where macv = "+ id +"");
 	    if (i > 0 ) {
-	        out.print("Add Successfull!"+"<a href='TruongBoMon.jsp'>Go back</a>");
+	        out.print("Add Successfull!"+"<a href='TrangCaNhantk.jsp'>Go back</a>");
 	    } else {
-	        out.print("Add fail!"+"<a href='PhanCongcv-TBM.jsp'>Go back</a>");
+	        out.print("Add fail!"+"<a href='TrangCaNhantk.jsp'>Go back</a>");
 	    }
-	    }
-	    else{
-	    	out.print("!!!"+"<a href='PhanCongcv-TBM.jsp'>Go back</a>");
-	    }
-
+	    
 	}
 	catch (Exception e){
 		out.println("An exception occurred: " + e.getMessage());

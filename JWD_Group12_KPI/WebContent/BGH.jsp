@@ -16,6 +16,27 @@
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css"  href="css/style.css">
+</script>
+<script>
+	function mySearch(){
+		  var input, filter, table, tr, td, i;
+ 		  input = document.getElementById("search");
+		  filter = input.value.toUpperCase();
+		  table = document.getElementById("myTable");
+		  tr = table.getElementsByTagName("tr");
+	
+	  for (i = 0; i < tr.length; i++) {
+    	td = tr[i].getElementsByTagName("td")[1];
+   		 if (td) {
+     	 if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+       		 tr[i].style.display = "";
+     	 } else {
+        	tr[i].style.display = "none";
+      	}
+   		} 
+ 	 }
+	}
+</script>
 </head>
 <body>
 	    <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
@@ -81,7 +102,7 @@
 					<form action="" class="search-form">
 						<div class="form-group has-feedback">
 							<label for="search" class="sr-only">Search</label>
-							<input type="text" class="form-control" name="search" id="search" placeholder="search">
+							<input type="text" class="form-control" name="search" id="search" onkeyup="mySearch()" placeholder="search">
 							<span class="glyphicon glyphicon-search form-control-feedback"></span>
 						</div>
 					</form>
@@ -96,7 +117,7 @@
 
 		<div class="container">
 		<h3>KPI Giảng Viên</h3>
-		<table class="table table-bordered table-striped">
+		<table id="myTable" class="table table-bordered table-striped">
 			<thead>
 				<tr>
 					<th>Mã giảng viên</th>
@@ -224,7 +245,8 @@
 					<th>Mã giảng viên</th>
 					<th>Tên giảng viên</th>
 					<th>Tên công việc</th>
-					<th>Nộ dung</th>
+					<th>Nội dung</th>
+					<th>Tiến độ</th>
 					<th>Ngày phân công</th>
 				</tr>
 			</thead>
@@ -235,7 +257,8 @@
 				<td><c:out value="${row.first_name} ${row.last_name}"/></td>
 				<td><c:out value="${row.tieude}"/></td>
 				<td><c:out value="${row.nd}"/></td>
-				<td><c:out value="${row.regdate}"/></td>
+				<td><c:out value="${row.tiendo}"/></td>
+				<td><c:out value="${row.regdate1}"/></td>
 			</tr>
 			</tbody>
 			</c:forEach>

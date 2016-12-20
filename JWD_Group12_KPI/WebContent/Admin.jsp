@@ -139,7 +139,7 @@ function generateReportA(){
       				<td><c:out value="${row.uname}"/></td>
       				<td><c:out value="${row.pass}"/></td>
       				<td><c:out value="${row.chucvu}"/></td>
-      				<td><input type="checkbox" name="dk" value="${row.uname}"></td>
+      				<td><input type="radio" name="dk" value="${row.uname}"></td>
     		</tr>
 	
   		 </tbody>

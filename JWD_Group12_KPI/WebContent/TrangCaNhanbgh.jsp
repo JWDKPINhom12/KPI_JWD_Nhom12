@@ -63,6 +63,7 @@
 		</sql:query>
 	<div class="container">
 		<h3>Thông báo</h3>
+		<form method="post" action="uptdbgh.jsp">
 		<table class="table table-bordered table-striped">
 			<thead>
 				<tr>
@@ -70,6 +71,8 @@
 					<th>Tiêu để</th>
 					<th>Nội dung</th>
 					<th>Thời gian gửi</th>
+					<th>Tiến độ</th>
+					<th></th>
 				</tr>
 			</thead>
 			<c:forEach var="row" items="${result.rows}">
@@ -78,11 +81,23 @@
 				<td><span class="glyphicon glyphicon-envelope"></span></td>
 				<td><c:out value="${row.tieude}"/></a></td>
 				<td><c:out value="${row.nd}"/></td>
-				<td><c:out value="${row.regdate}"/></td>
+				<td><c:out value="${row.regdate1}"/></td>
+				<td><c:out value="${row.tiendo}"/></td>
+				<td align="center"><input type="radio" name="id" value="${row.macv}"></div>
+				</td>
 			</tr>
 			</tbody>
 			</c:forEach>
 		</table>
+    	<select name="td">
+	        <option value="">Pls select one
+	        <option value="Chưa thực hiện">Chưa thực hiện
+	        <option value="Đang thực hiện">Đang thực hiện
+	        <option value="Đã hoàn thành">Đã hoàn thành
+   		 </select>
+	    <input type="hidden" name="dropdown" id="dropdown">
+	    <input type="submit" value="submit" name="dropdown" id="dropdown">
+		</form>
 	</div>
 		<sql:query dataSource="${snapshot}" var="result">
 		SELECT * from members where uname = <%=session.getAttribute("userid")%>;

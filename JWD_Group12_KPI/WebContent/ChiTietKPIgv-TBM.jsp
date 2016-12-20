@@ -8,6 +8,15 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+	<%
+				
+				String kpi = request.getParameter("kpi");
+				session.setAttribute("kpi", kpi);
+				
+				String id = request.getParameter("id");
+				session.setAttribute("id", id);
+	%>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Chi tiết KPI</title>
@@ -16,18 +25,21 @@
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css"  href="css/style.css">
-			<%
-				String id = request.getParameter("id");
-				session.setAttribute("id", id);
-			%>
 </head>
 <body>
 	    <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
-	    	    url="jdbc:mysql://localhost/db_kpi"
+	    	    url="jdbc:mysql://localhost:3306/db_kpi"
 	    	    user="root"  password="1672538Son"/>
 		<sql:query dataSource="${snapshot}" var="result">
-						SELECT * from members where uname = <%=session.getAttribute("userid")%>;
+				SELECT * from members where uname = '<%=session.getAttribute("uname")%>';
 		</sql:query>
+		
+		<sql:query dataSource="${snapshot}" var="result2">
+				SELECT d2.makpi,muctieu,noidung,tgbd,tgkt,dkpimax,ctdk	
+				from danhsachbm d1 join dkkpi d2 on d1.makpi=d2.makpi
+				 where d1.makpi=<%=session.getAttribute("kpi")%> and d2.magv=<%=session.getAttribute("id")%> ;	
+		</sql:query>
+		
 <div class="page-wrap">
 	<div class="header">
 	<div class="container" style="padding: 15px">
@@ -60,18 +72,14 @@
 	</div>
 </nav>
 
-		<sql:query dataSource="${snapshot}" var="result">
-						SELECT * from members where uname = <%=session.getAttribute("id")%>;
-		</sql:query>
+		
 
 	<div class="container">
 		<c:forEach var="row" items="${result.rows}">
 		<div class="well" style="width: 15%"><a href="#" class="glyphicon glyphicon-user"><c:out value="${row.first_name} ${row.last_name}"/></a></div>
 		</c:forEach>
 		<h3>Chi tiết KPI</h3>
-		<sql:query dataSource="${snapshot}" var="result">
-		SELECT * from dkkpi d1 inner join danhsachbm d2 on d1.makpi=d2.makpi where magv =<%=session.getAttribute("id")%> ;
-		</sql:query>
+		
 		<table class="table table-bordered table-striped">
 			<thead>
 				<tr>
@@ -83,9 +91,10 @@
 					<th>Thời gian thực hiện</th>
 				</tr>
 			</thead>
-			<c:forEach var="row" items="${result.rows}">
+			<c:forEach var="row" items="${result2.rows}">
 			<tbody>
 			<tr>
+	
 				<td><c:out value="${row.makpi}"/></td>
 				<td><c:out value="${row.muctieu}"/></td>
 				<td><c:out value="${row.noidung}"/></td>

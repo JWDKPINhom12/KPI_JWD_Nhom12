@@ -22,11 +22,14 @@
 			<%
 				String id = request.getParameter("id");
 				session.setAttribute("id", id);
+				
+				String kpi = request.getParameter("kpi");
+				session.setAttribute("kpi", kpi);
 			%>
 	    <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
-	    	    url="jdbc:mysql://localhost/db_kpi"
+	    	    url="jdbc:mysql://localhost:3306/db_kpi"
 	    	    user="root"  password="1672538Son"/>
-		<sql:query dataSource="${snapshot}" var="result">
+	    <sql:query dataSource="${snapshot}" var="result">
 						SELECT * from members where uname = <%=session.getAttribute("userid")%>;
 		</sql:query>
 <div class="page-wrap">
@@ -61,23 +64,29 @@
 	</div>
 </nav>
 
-		<sql:query dataSource="${snapshot}" var="result">
-						SELECT * from members where uname = <%=session.getAttribute("id")%>;
+		<sql:query dataSource="${snapshot}" var="result2">
+				select *
+				from danhsachbm d1 join dkkpi d2 on d1.makpi=d2.makpi
+				where d1.makpi=<%=session.getAttribute("kpi")%> 
+					and magv=<%=session.getAttribute("id")%>
 		</sql:query>
 
 	<div class="container">
-		<form method="post" class="form-horizontal" action="adddgtbm.jsp" role="form">
+	<form method="post" class="form-horizontal" action="adddgtbm.jsp" role="form">
 		<c:forEach var="row" items="${result.rows}">
 		<div class="well" style="width: 15%"><a href="#" class="glyphicon glyphicon-user"><c:out value="${row.first_name} ${row.last_name}"/></a></div>
 		</c:forEach>
 		<h3>Đánh giá</h3>
-		<sql:query dataSource="${snapshot}" var="result">
-		SELECT * from dkkpi d1 inner join danhsachbm d2 on d1.makpi=d2.makpi where magv =<%=session.getAttribute("id")%> ;
+		<sql:query dataSource="${snapshot}" var="result2">
+				select *
+				from danhsachbm d1 join dkkpi d2 on d1.makpi=d2.makpi
+				where d1.makpi=<%=session.getAttribute("kpi")%> 
+					and magv=<%=session.getAttribute("id")%>
 		</sql:query>
 		<table class="table table-bordered table-striped">
 			<thead>
 				<tr>
-					<th></th>
+				
 					<th>Mục tiêu</th>
 					<th>Điểm KPI tối đa</th>
 					<th>Chỉ tiêu đăng ký</th>
@@ -85,10 +94,10 @@
 					<th>Điểm cấp trên đánh giá</th>
 				</tr>
 			</thead>
-			<c:forEach var="row" items="${result.rows}">
+			<c:forEach var="row" items="${result2.rows}">
 			<tbody>
 			<tr>
-				<td><input type="checkbox" name="dk" value="${row.makpi}"></td>
+				
 				<td><c:out value="${row.muctieu}"/></td>
 				<td><c:out value="${row.dkpimax}"/></td>
 				<td><c:out value="${row.ctdk}"/></td>
@@ -98,6 +107,12 @@
 			</tbody>
 			</c:forEach>
 		</table>
+		<div>
+			<input type="hidden" name="dk" value='<%=session.getAttribute("kpi")%>'> 
+		</div>
+		<div>
+			<input type="hidden" name="id" value='<%=session.getAttribute("id")%>'> 
+		</div>
 		<div class="form-group">
 			<div>
 			 	<label for="comment">Nhập điểm</label>

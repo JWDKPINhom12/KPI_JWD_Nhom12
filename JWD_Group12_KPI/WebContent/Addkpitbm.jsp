@@ -33,7 +33,7 @@
 	    }
 	}
 	catch (Exception e){
-		out.println("An exception occurred: " + e.getMessage());
+		out.println("Bạn đã đăng ký: " + "<a href='TruongBoMon.jsp'>Go back</a>");
 	}
 	%>
 </body>

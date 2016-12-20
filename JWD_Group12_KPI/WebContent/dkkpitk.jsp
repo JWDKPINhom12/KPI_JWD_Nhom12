@@ -17,17 +17,6 @@
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css"  href="css/style.css">
-<script>
-function generateReportU(){
-   document.forms['addup'].action = 'updiemtk.jsp';
-   document.forms['addup'].submit();
-}
-
-function generateReportA(){
-   document.forms['addup'].action = 'Addkpitk.jsp';
-   document.forms['addup'].submit();
-}
-</script>
 </head>
 <body>
 	    <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
@@ -73,7 +62,7 @@ function generateReportA(){
 		SELECT * from danhsachbm;
 		</sql:query>
 	<div class="container">
-	<form name="addup" method="post" class="form-horizontal" action="" role="form">
+	<form method="post" class="form-horizontal" action="Addkpitk.jsp" role="form">
 		<h3>Đăng ký KPI</h3>
 		<table class="table table-bordered table-striped">
 			<thead>
@@ -90,7 +79,7 @@ function generateReportA(){
 			<c:forEach var="row" items="${result.rows}">
 			<tbody>
 			<tr>
-				<td><input type="checkbox" name="dk" value="${row.makpi}"></td>
+				<td align="center"><input type="radio" name="dk" value="${row.makpi}"></td>
 				<td><c:out value="${row.makpi}"/></td>
 				<td><c:out value="${row.muctieu}"/></td>
 				<td><c:out value="${row.noidung}"/></td>
@@ -101,11 +90,8 @@ function generateReportA(){
 			</tbody>
 			</c:forEach>
 		</table>
-		<button type="submit" class="btn btn-primary" onclick="generateReportA();" >Xác nhận</button>
+		<button type="submit" class="btn btn-primary">Xác nhận</button>
 		<a href="TruongKhoa.jsp" class="btn btn-warning" role="button">Hủy</a>
-		<p></p>
-		<input name="dtdg" type="text" class="form-control input-md" style="width: 15%" placeholder="Nhập điểm">
-		<button type="submit" class="btn btn-info" onclick="generateReportU();">Cập nhật</button>
 		</form>
 	</div>
 </div>	

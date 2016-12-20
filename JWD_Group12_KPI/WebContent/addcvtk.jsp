@@ -23,7 +23,7 @@
 	    if(dk!= null)
 	    {
 	    //ResultSet rs;
-        int i = st.executeUpdate("insert into pccv(magv,tieude,nd,regdate) values('"+ dk +"','"+ td+"', '"+ nd +"',CURDATE())");
+        int i = st.executeUpdate("insert into pccv(magv,tieude,nd,regdate1) values('"+ dk +"','"+ td+"', '"+ nd +"',CURDATE())");
 	    if (i > 0 ) {
 	        out.print("Add Successfull!"+"<a href='PhanCongcv-TK.jsp'>Go back</a>");
 	    } else {

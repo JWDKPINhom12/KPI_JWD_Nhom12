@@ -16,6 +16,7 @@
 		}
 		.header{
 			background-image: url("../img/Background.jpg");
+			background-attachment: fixed;
 		}
  		thead{
  			background-color: #6600cc;

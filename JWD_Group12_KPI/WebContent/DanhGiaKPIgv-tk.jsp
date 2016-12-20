@@ -88,7 +88,8 @@
 			<c:forEach var="row" items="${result.rows}">
 			<tbody>
 			<tr>
-				<td><input type="checkbox" name="dk" value="${row.makpi}"></td>
+			<%--	<td><input type="checkbox" name="dk" value="${row.makpi}"></td>			--%>
+				<td align="center"><input type="radio" name="dk" value="${row.makpi}"></td>
 				<td><c:out value="${row.muctieu}"/></td>
 				<td><c:out value="${row.dkpimax}"/></td>
 				<td><c:out value="${row.ctdk}"/></td>

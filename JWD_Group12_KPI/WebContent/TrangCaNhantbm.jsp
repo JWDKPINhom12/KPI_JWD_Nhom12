@@ -19,7 +19,7 @@
 </head>
 <body>
 	    <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
-	    	    url="jdbc:mysql://localhost/db_kpi"
+	    	    url="jdbc:mysql://localhost:3306/db_kpi"
 	    	    user="root"  password="1672538Son"/>
 
 		<sql:query dataSource="${snapshot}" var="result">
@@ -57,7 +57,7 @@
 	</div>
 </nav>
 
-		<sql:query dataSource="${snapshot}" var="result">
+		<sql:query dataSource="${snapshot}" var="result1">
 		SELECT * from pccv where magv = <%=session.getAttribute("userid")%>;
 		</sql:query>
 	<div class="container">
@@ -71,19 +71,19 @@
 					<th>Thời gian gửi</th>
 				</tr>
 			</thead>
-			<c:forEach var="row" items="${result.rows}">
+			<c:forEach var="row" items="${result1.rows}">
 			<tbody>
 			<tr>
 				<td><span class="glyphicon glyphicon-envelope"></span></td>
 				<td><c:out value="${row.tieude}"/></a></td>
 				<td><c:out value="${row.nd}"/></td>
-				<td><c:out value="${row.regdate}"/></td>
+				<td><c:out value="${row.regdate1}"/></td>
 			</tr>
 			</tbody>
 			</c:forEach>
 		</table>
 	</div>
-		<sql:query dataSource="${snapshot}" var="result">
+		<sql:query dataSource="${snapshot}" var="result2">
 		SELECT * from members where uname = <%=session.getAttribute("userid")%>;
 		</sql:query>
 	<div class="container">
@@ -94,7 +94,7 @@
 					<th></th>
 				</tr>
 			</thead>
-			<c:forEach var="row" items="${result.rows}">
+			<c:forEach var="row" items="${result2.rows}">
 		<tbody>
 			<td>
 				<h1><span class="glyphicon glyphicon-user"></span></h1>

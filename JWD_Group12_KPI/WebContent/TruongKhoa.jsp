@@ -42,6 +42,26 @@ function generateReportA(){
    document.forms['adddel'].submit();
 }
 </script>
+<script>
+	function mySearch(){
+		  var input, filter, table, tr, td, i;
+ 		  input = document.getElementById("search");
+		  filter = input.value.toUpperCase();
+		  table = document.getElementById("myTable");
+		  tr = table.getElementsByTagName("tr");
+	
+	  for (i = 0; i < tr.length; i++) {
+    	td = tr[i].getElementsByTagName("td")[1];
+   		 if (td) {
+     	 if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+       		 tr[i].style.display = "";
+     	 } else {
+        	tr[i].style.display = "none";
+      	}
+   		} 
+ 	 }
+	}
+</script>
 </head>
 <body>
 	    <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
@@ -109,7 +129,7 @@ function generateReportA(){
 					<form action="" class="search-form">
 						<div class="form-group has-feedback">
 							<label for="search" class="sr-only">Search</label>
-							<input type="text" class="form-control" name="search" id="search" placeholder="search">
+							<input type="text" class="form-control" name="search" id="search" onkeyup="mySearch()" placeholder="search">
 							<span class="glyphicon glyphicon-search form-control-feedback"></span>
 						</div>
 					</form>
@@ -123,7 +143,7 @@ function generateReportA(){
 
 		<div class="container">
 		<h3>KPI Giảng Viên</h3>
-		<table class="table table-bordered table-striped">
+		<table id="myTable" class="table table-bordered table-striped">
 			<thead>
 				<tr>
 					<th>Mã giảng viên</th>
@@ -183,9 +203,11 @@ function generateReportA(){
 
 		<div class="container">
 		<h3>KPI cá nhân</h3>
+		<form method="post" class="form-horizontal" action="updiemtk.jsp" role="form">
 		<table class="table table-bordered table-striped">
 			<thead>
 				<tr>
+					<th></th>
 					<th>Mã KPI</th>
 					<th>Mục tiêu</th>
 					<th>Nội dung chi tiết</th>
@@ -201,6 +223,7 @@ function generateReportA(){
         <c:forEach var="row" items="${result.rows}">
 			<tbody>
 			<tr>
+				<td align="center"><input type="radio" name="dk" value="${row.makpi}"></td>
 				<td><c:out value="${row.makpi}"/></td>
 				<td><c:out value="${row.muctieu}"/></td>
 				<td><c:out value="${row.noidung}"/></a></td>
@@ -218,6 +241,11 @@ function generateReportA(){
 		</c:forEach>
 		</table>
 		<a href="dkkpitk.jsp" class="btn btn-info" role="button">Đăng ký</a>
+		<p> </p>
+		<label for="comment">Nhập điểm</label>
+ 		<input name="dtdg" type="text" class="form-control input-md" style="width: 15%">
+		<button type="submit" class="btn btn-success" >Cập nhật</button>
+		</form>
 	</div>
 	</div>
 	
@@ -335,7 +363,8 @@ function generateReportA(){
 					<th>Mã giảng viên</th>
 					<th>Tên giảng viên</th>
 					<th>Tên công việc</th>
-					<th>Nộ dung</th>
+					<th>Nội dung</th>
+					<th>Tiến độ</th>
 					<th>Ngày phân công</th>
 				</tr>
 			</thead>
@@ -346,6 +375,7 @@ function generateReportA(){
 				<td><c:out value="${row.first_name} ${row.last_name}"/></td>
 				<td><c:out value="${row.tieude}"/></td>
 				<td><c:out value="${row.nd}"/></td>
+				<td><c:out value="${row.tiendo}"/></td>
 				<td><c:out value="${row.regdate}"/></td>
 			</tr>
 			</tbody>

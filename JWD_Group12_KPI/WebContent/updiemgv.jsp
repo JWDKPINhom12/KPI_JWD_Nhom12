@@ -24,9 +24,9 @@
 	    {
         int i = st.executeUpdate("update dkkpi set dtdg = "+ dtdg + " where magv = "+ magv +" and makpi = "+ dk +"");
 	    if (i > 0 ) {
-	        out.print("Add Successfull!"+"<a href='ChiTietKPI.jsp'>Go back</a>");
+	        out.print("Add Successfull!"+"<a href='GiangVien.jsp'>Go back</a>");
 	    } else {
-	        out.print("Add fail!"+"<a href='ChiTietKPI.jsp'>Go back</a>");
+	        out.print("Add fail!"+"<a href='GiangVien.jsp'>Go back</a>");
 	    }
 	    }
 	    else{

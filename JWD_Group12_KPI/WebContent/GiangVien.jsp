@@ -16,6 +16,26 @@
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css"  href="css/style.css">
+<script>
+	function mySearch(){
+		  var input, filter, table, tr, td, i;
+ 		  input = document.getElementById("search");
+		  filter = input.value.toUpperCase();
+		  table = document.getElementById("myTable");
+		  tr = table.getElementsByTagName("tr");
+	
+	  for (i = 0; i < tr.length; i++) {
+    	td = tr[i].getElementsByTagName("td")[1];
+   		 if (td) {
+     	 if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+       		 tr[i].style.display = "";
+     	 } else {
+        	tr[i].style.display = "none";
+      	}
+   		} 
+ 	 }
+	}
+</script>
 </head>
 <body>
 <div class="page-wrap">
@@ -74,7 +94,7 @@
 			<form action="" class="search-form">
 				<div class="form-group has-feedback">
 					<label for="search" class="sr-only">Search</label>
-					<input type="text" class="form-control" name="search" id="search" placeholder="search">
+					<input type="text" class="form-control" name="search" id="search" onkeyup="mySearch()" placeholder="search">
 					<span class="glyphicon glyphicon-search form-control-feedback"></span>
 				</div>
 			</form>
@@ -87,9 +107,11 @@
 		</sql:query>
 	<div class="container">
 		<h3>Danh sách KPI đăng ký</h3>
-		<table class="table table-bordered table-striped">
+		<form method="post" class="form-horizontal" action="updiemgv.jsp" role="form">
+		<table id="myTable" class="table table-bordered table-striped">
 			<thead>
 				<tr align="center">
+					<th></th>
 					<th>Mã KPI</th>
 					<th>Mục tiêu</th>
 					<th>Nội dung chi tiết</th>
@@ -106,6 +128,7 @@
 			<tbody>
 
 			<tr align="center">
+				<td align="center"><input type="radio" name="dk" value="${row.makpi}"></td>
 				<td><c:out value="${row.makpi}"/></td>
 				<td><c:out value="${row.muctieu}"/></td>
 				<td><c:out value="${row.noidung}"/></a></td>
@@ -122,6 +145,11 @@
 			</c:forEach>
 		</table>
 		<a href="ChiTietKPI.jsp" class="btn btn-info" role="button">Đăng ký</a>
+		<p> </p>
+		<label for="comment">Nhập điểm</label>
+ 		<input name="dtdg" type="text" class="form-control input-md" style="width: 15%">
+		<button type="submit" class="btn btn-success" >Cập nhật</button>
+		</form>
 	</div>
 	</div>
 	<footer class="site-footer">
