@@ -125,7 +125,7 @@
   <label class="col-md-4 control-label" for="cmpny">Chức vụ</label>  
   <div class="col-md-4">
        				<select class="form-control" name="cmpny" style="margin-top: 7px">
-       				<option value="${row.cv}">${row.cv}</option>      
+       				<option value="${row.chucvu}">${row.chucvu}</option>      
       				<option value="gv">Giảng viên</option>      
       				<option value="tbm">Trưởng bộ môn</option>
       				<option value="tk">Trưởng khoa</option>
