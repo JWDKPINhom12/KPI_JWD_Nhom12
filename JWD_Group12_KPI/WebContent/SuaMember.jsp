@@ -10,12 +10,23 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Thông tin tài khoản</title>
+<title>Chỉnh sửa thành viên</title>
+
+
 	<meta name="viewport" content="width=device-width, initial-scale=1">
  	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+ 	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" type="text/css"  href="css/style.css">
+ 	<script src="js/bootstrap.min.js"></script>   
+
+ 	<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.css" rel="stylesheet" type="text/css">
+	
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+	
+	<link rel="stylesheet" type="text/css"  href="css/style.css">	
+
 </head>
 <body>
 	    <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
@@ -57,35 +68,42 @@
 	</div>
 </nav>
 
+<sql:query dataSource="${snapshot}" var="result">
+		SELECT * from members where uname = '<%= request.getParameter("x") %>';
+		</sql:query>
+
 <div class="container">
-<form method="post" class="form-horizontal" id="signup" action="AddMember.jsp" role="form">
+<form method="post" class="form-horizontal" action ='UpdateMember.jsp' id="signup" role="form">
 <fieldset>
+
+
 <legend>Sign Up</legend>
+<c:forEach var="row" items="${result.rows}">
 <div class="form-group">
   <label class="col-md-4 control-label" for="fn">Họ</label>  
   <div class="col-md-4">
-  <input id="fn" name="fn" type="text" placeholder="Họ" class="form-control input-md">    
+  <input id="fn" name="fn" value="${row.first_name}" type="text" placeholder="Họ" class="form-control input-md">    
   </div>
 </div>
 
 <div class="form-group">
   <label class="col-md-4 control-label" for="ln">Tên</label>  
   <div class="col-md-4">
-  <input id="ln" name="ln" type="text" placeholder="Tên" class="form-control input-md">    
+  <input id="ln" name="ln" value="${row.last_name}" type="text" placeholder="Tên" class="form-control input-md">    
   </div>
 </div>
 
 <div class="form-group">
   <label class="col-md-4 control-label" for="uname">UserID</label>
   <div class="col-md-4">
-  <input id="uname" name="uname" type="text" placeholder="UserID" class="form-control input-md">    
+  <input id="uname" name="uname" value="${row.uname}" type="text" placeholder="UserID" class="form-control input-md" readonly>    
   </div>
 </div>
 
 <div class="form-group">
   <label class="col-md-4 control-label" for="pass">Pass</label>  
   <div class="col-md-4">
-  <input id="pass" name="pass" type="text" placeholder="Pass" class="form-control input-md">    
+  <input id="pass" name="pass" value="${row.pass}" type="text" placeholder="Pass" class="form-control input-md">    
   </div>
 </div>
 
@@ -93,7 +111,7 @@
   <label class="col-md-4 control-label" for="Gender">Giới tính</label>
   <div class="col-md-4"> 
     <label class="radio-inline" for="Gender-0">
-      <input type="radio" name="Gender" id="Gender-0" value="Nam" checked="checked">
+      <input type="radio" name="Gender" id="Gender-0" value="Nam">
       Nam
     </label> 
     <label class="radio-inline" for="Gender-1">
@@ -107,6 +125,7 @@
   <label class="col-md-4 control-label" for="cmpny">Chức vụ</label>  
   <div class="col-md-4">
        				<select class="form-control" name="cmpny" style="margin-top: 7px">
+       				<option value="${row.cv}">${row.cv}</option>      
       				<option value="gv">Giảng viên</option>      
       				<option value="tbm">Trưởng bộ môn</option>
       				<option value="tk">Trưởng khoa</option>
@@ -122,6 +141,7 @@
   <label class="col-md-4 control-label" for="add1">Khoa</label>  
   <div class="col-md-4">
        				<select class="form-control" name="add1" style="margin-top: 7px">
+      				<option value="${row.khoa}">${row.khoa}</option> 
       				<option value="Công nghệ thông tin">Công nghệ thông tin</option>   
       				<option value="Cơ khí chế tạo máy">Cơ khí chế tạo máy</option>
       				<option value="Cơ khí động lưc">Cơ khí động lưc</option>
@@ -141,7 +161,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="email">Email</label>  
   <div class="col-md-4">
-  <input id="email" name="email" type="text" placeholder="Email" class="form-control input-md">
+  <input id="email" type='email'  name="email" value="${row.email}" placeholder="Email" class="form-control input-md">
   <span id="helpBlock" class="help-block">Ex: email@example.com</span>    
   </div>
 </div>
@@ -149,26 +169,28 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="add">Địa chỉ</label>  
   <div class="col-md-4">
-  <input id="add" name="add" type="text" placeholder="Địa chỉ" class="form-control input-md">    
+  <input id="add" name="add" value="${row.diachi}" type="text" placeholder="Địa chỉ" class="form-control input-md">    
   </div>
 </div>
 
 <div class="form-group">
   <label class="col-md-4 control-label" for="sdt">Số điện thoại</label>  
   <div class="col-md-4">
-  <input id="sdt" name="sdt" type="text" placeholder="SĐT" class="form-control input-md">    
+  <input id="sdt" name="sdt" value="${row.sdt}" type="text" placeholder="SĐT" class="form-control input-md">    
   </div>
 </div>
 
 <div class="form-group">
   <label class="col-md-4 control-label" for="submit"></label>
   <div class="col-md-4">
-    <button type ="submit" id="submit" class="btn btn-primary">Xác nhận</button>    
+    <button type ="submit" class="btn btn-primary" >Xác nhận</button>    
     <a href="Admin.jsp" class="btn btn-danger" role="button">Hủy</a>
   </div>
 </div>
+</c:forEach>
 </fieldset>
 </form>
+
 </div>
 
 </div>
@@ -214,31 +236,31 @@ $(document).ready(
 			$("#submit").click(function()
 			{
 
-				if(!validateText("fn"))
+				if(!validateText("makpi"))
 				{
 					return false;
 				}
-				if(!validateText("ln"))
+				if(!validateText("muctieu"))
 				{
 					return false;
 				}
-				if(!validateText("uname"))
+				if(!validateText("noidung"))
 				{
 					return false;
 				}
-				if(!validateText("pass"))
+				if(!validateText("tgbd"))
 				{
 					return false;
 				}
-				if(!validateText("email"))
+				if(!validateText("tgkt"))
 				{
 					return false;
 				}
-				if(!validateText("add"))
+				if(!validateText("ctdk"))
 				{
 					return false;
 				}
-				if(!validateText("sdt"))
+				if(!validateText("dkpimax"))
 				{
 					return false;
 				}
@@ -246,5 +268,7 @@ $(document).ready(
 		}
 		)
 </script>
+
+
 </body>
 </html>

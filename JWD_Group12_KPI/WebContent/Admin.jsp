@@ -10,17 +10,48 @@
 <html>
 <head>
 <title>Administrator</title>
+	
 	<meta name="viewport" content="width=device-width, initial-scale=1">
  	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
- 	  <script src="js/bootstrap.min.js"></script>
-  
-  
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/jquery-ui.min.js"></script>
 	<link rel="stylesheet" type="text/css"  href="css/style.css">
+	
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+   <link rel="shortcut icon" type="image/png" href="/media/images/favicon.png">
+   <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.datatables.net/rss.xml">
+   <link rel="stylesheet" type="text/css" href="/media/css/site-examples.css?_=b05357026107a2e3ca397f642d976192">
+   <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css">
+   <script type="text/javascript" async="" src="https://ssl.google-analytics.com/ga.js"></script><script type="text/javascript" src="/media/js/site.js?_=9a83ad61fa12260d710e54eb5f3203dc"></script>
+   <script type="text/javascript" src="/media/js/dynamic.php?comments-page=examples%2Fstyling%2Fbootstrap.html" async=""></script>
+   <script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.12.4.js"></script>
+   <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+   <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
+   <script type="text/javascript" language="javascript" src="../resources/demo.js"></script>
+   <script type="text/javascript" class="init">
+      $(document).ready(function() {
+      	$('#example').DataTable();
+      	$('#fix').click(function(){
+      		var c = "SuaMember.jsp?x=" + $('input[name=dk]:checked').val();
+      		$(this).attr('href',c);
+      		window.location.replace(c);
+      	});
+      	$('#fix2').click(function(){
+      		var c = "SuaBM.jsp?y=" + $('input[name=makpiradio]:checked').val();
+      		$(this).attr('href',c);
+      		window.location.replace(c);
+      	});
+      } );
+      	
+   </script>
+     <script type="text/javascript" class="init">
+      $(document).ready(function() {
+      	$('#example2').DataTable();
+      } );
+      
+      	
+   </script>
  <script type="text/javascript">
 	$(function() {
 	$("#Date1").datepicker({ dateFormat: 'yy-mm-dd' });
@@ -33,15 +64,14 @@
 	});
 </script> 
 <script>
+function generateReportU(){
+   document.forms['adddel'].action = 'SuaBM.jsp';
+   document.forms['adddel'].submit();
+}
 function generateReportD(){
-   document.forms['adddel'].action = 'Delbm.jsp';
-   document.forms['adddel'].submit();
-}
-
-function generateReportA(){
-   document.forms['adddel'].action = 'Addbm.jsp';
-   document.forms['adddel'].submit();
-}
+	   document.forms['adddel'].action = 'Delbm.jsp';
+	   document.forms['adddel'].submit();
+	}
 </script>
 </head>
 <body>
@@ -91,29 +121,7 @@ function generateReportA(){
  		</ul>
 	<div class="tab-content">
    	<div id="kpigv" class="tab-pane fade in active">
-		<div class="container">
-			<div class="dropdown">
-				<div class="col-md-1 col-md-offset-8">
-					<button class=" btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Sắp xếp<span class="caret"></span></button>
-						<ul class="dropdown-menu">
-							<li><a href="#">Tên</a></li>
-							<li><a href="#">Ngày đăng ký</a></li>
-							<li><a href="#">Duyệt</a></li>	
-						</ul>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-3">
-					<form action="" class="search-form">
-						<div class="form-group has-feedback">
-							<label for="search" class="sr-only">Search</label>
-							<input type="text" class="form-control" name="search" id="search" placeholder="search">
-							<span class="glyphicon glyphicon-search form-control-feedback"></span>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
+		
   <form method="post" class="form-horizontal" action="DelMember.jsp" role="form">
 
 		<sql:query dataSource="${snapshot}" var="result">
@@ -122,32 +130,34 @@ function generateReportA(){
 
 		<div class="container">
 		<h3>Tài khoản giảng viên</h3>
-		<table class="table table-bordered table-striped">
+		<table id="example" class="table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;">
 			 <thead>
   		  	<tr class="thead1">  		  	
   		   	 	<th>Tên giảng viên</th>
     		 	<th>Mã giảng viên</th>
     		 	<th>Password</th>
     		 	<th>Phân quyền</th>
-    		 	<th>Xóa</th>
+    		 	<th>Chọn</th>
  	   		</tr>
   		 	</thead>
+  		 	<tbody>
   		 	<c:forEach var="row" items="${result.rows}">
-  		 <tbody>
+  		 
     		<tr>
      	 			<td><c:out value="${row.first_name} ${row.last_name}"/></td>
       				<td><c:out value="${row.uname}"/></td>
       				<td><c:out value="${row.pass}"/></td>
       				<td><c:out value="${row.chucvu}"/></td>
-      				<td><input type="radio" name="dk" value="${row.uname}"></td>
+      				<td><input type="radio" class="SuaMB" name="dk" value="${row.uname}"></td>
     		</tr>
 	
-  		 </tbody>
+  	
   		 </c:forEach>
+  		 	 </tbody>
 		</table>
 		<div class="btn1">
 		<a href="SignUp.jsp" class="btn btn-primary" style="margin-right: 30px" role="button">Thêm</a>
-		<button type="button" class="btn btn-primary" style="margin-right: 30px">Sửa</button>
+		<a href="#" id="fix" class="btn btn-primary" style="margin-right: 30px" role="button">Sửa</a>
 		<button type="submit" class="btn btn-danger">Xóa</button>
 		</div>
 	</div>
@@ -156,29 +166,7 @@ function generateReportA(){
     </div>
     <div id="pccv" class="tab-pane fade">
 
-		<div class="container">
-			<div class="dropdown">
-				<div class="col-md-1 col-md-offset-8">
-					<button class=" btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Sắp xếp<span class="caret"></span></button>
-						<ul class="dropdown-menu">
-							<li><a href="#">Tên</a></li>
-							<li><a href="#">Khoa</a></li>
-							<li><a href="#">Công việc</a></li>	
-						</ul>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-3">
-					<form action="" class="search-form">
-						<div class="form-group has-feedback">
-							<label for="search" class="sr-only">Search</label>
-							<input type="text" class="form-control" name="search" id="search" placeholder="search">
-							<span class="glyphicon glyphicon-search form-control-feedback"></span>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
+		
 
 
 		<sql:query dataSource="${snapshot}" var="result">
@@ -186,9 +174,9 @@ function generateReportA(){
 		</sql:query>
 		
   <div class="container">
-  <form name="adddel" method="post" class="form-horizontal" action="" role="form">
+  <form name="adddel" method="post" class="form-horizontal" action="Delbm.jsp" role="form">
     <h3>Chi tiết KPI</h3>
-    <table class="table table-bordered table-striped">
+    <table id="example2" class="table table-striped table-bordered dataTable" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;">
       <thead>
           <tr class="thead1">         
           <th>Mã kpi</th>
@@ -198,19 +186,12 @@ function generateReportA(){
           <th>Thời gian kết thúc</th>
           <th>Chỉ tiêu đăng ký</th>
           <th>Điểm KPI max</th>
+          <th>Chọn</th>
         </tr>
        </thead>
 
        <tbody>
-        <tr>
-          	<td><input name="makpi" type="text" class="form-control input-md"></td>
-            <td><input name="muctieu" type="text" class="form-control input-md"></td>
-            <td><input name="noidung" type="text" class="form-control input-md"></td>
-            <td><input type="text" name="tgbd" id="Date1"></td>
-            <td><input type="text" name="tgkt" id="Date2"></td>
-            <td><input name="ctdk" type="text" class="form-control input-md"></td>
-            <td><input name="dkpimax" type="text" class="form-control input-md"></td>
-          </tr>
+        
         <c:forEach var="row" items="${result.rows}">
         <tr>
           <td><c:out value="${row.makpi}"/></td>
@@ -220,14 +201,16 @@ function generateReportA(){
           <td><c:out value="${row.tgkt}"/></td>
           <td><c:out value="${row.ctdk}"/></td>
           <td><c:out value="${row.dkpimax}"/></td>
-        </tr>    
-       </tbody>
+          <td><input type="radio" name="makpiradio" value="${row.makpi}"></td>
+        </tr>          
        </c:forEach>
+      </tbody>
     </table>
+    
     <div class="btn1">
-    <button type="submit" class="btn btn-primary" style="margin-right: 30px" onclick="generateReportA();">Thêm</button>
-    <button type="button" class="btn btn-primary" style="margin-right: 30px">Sửa</button>
-    <button type="submit" class="btn btn-danger" onclick="generateReportD();">Xóa</button>
+    <a href="ThemBM.jsp" class="btn btn-primary" style="margin-right: 30px" role="button">Thêm</a>
+    <a href="SuaBM.jsp" id = "fix2" name="update_btn" class="btn btn-primary" style="margin-right: 30px" role="button">Sửa</a>
+    <button type="submit" name="delete_btn" class="btn btn-danger">Xóa</button>   
     </div>
     </form>
   </div>  
@@ -248,6 +231,7 @@ function generateReportA(){
 			</div>
 		</div>
 	</footer>
+
 
 
 </body>

@@ -26,7 +26,7 @@
 
 	    //ResultSet rs;
         int i = st.executeUpdate("insert into danhsachbm(makpi, muctieu, noidung, tgbd, tgkt, dkpimax, ctdk) values ('" + makpi + "','" + muctieu + "', '" + noidung + "', '" + tgbd + "', '" + tgkt + "','" + dkpimax + "','" + ctdk + "')");
-	    if (i > 0) {
+        if (i > 0) {
 	        out.print("Add Successfull!"+"<a href='Admin.jsp'>Go back</a>");
 	    } else {
 	        out.print("Add fail!"+"<a href='Admin.jsp'>Go back</a>");

@@ -10,12 +10,35 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Thông tin tài khoản</title>
+<title>Thêm biểu mẫu</title>
+
+
 	<meta name="viewport" content="width=device-width, initial-scale=1">
  	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+ 	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" type="text/css"  href="css/style.css">
+ 	<script src="js/bootstrap.min.js"></script>   
+
+ 	<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.css" rel="stylesheet" type="text/css">
+	
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+	
+	<link rel="stylesheet" type="text/css"  href="css/style.css">	
+	
+	<script type="text/javascript">
+	$(function() {
+	$("#tgbd").datepicker({ dateFormat: 'yy-mm-dd' });
+	});
+</script>  
+  
+<script type="text/javascript">
+	$(function() {
+	$("#tgkt").datepicker({ dateFormat: 'yy-mm-dd' });
+	});
+</script> 
+
 </head>
 <body>
 	    <sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
@@ -58,112 +81,62 @@
 </nav>
 
 <div class="container">
-<form method="post" class="form-horizontal" id="signup" action="AddMember.jsp" role="form">
+<form method="post" class="form-horizontal" id="signup" action="Addbm.jsp" role="form">
 <fieldset>
-<legend>Sign Up</legend>
+<legend>Biểu mẫu</legend>
 <div class="form-group">
-  <label class="col-md-4 control-label" for="fn">Họ</label>  
+  <label class="col-md-4 control-label" for="makpi">Mã KPI</label>  
   <div class="col-md-4">
-  <input id="fn" name="fn" type="text" placeholder="Họ" class="form-control input-md">    
+  <input id="makpi" name="makpi" type="text" class="form-control input-md">    
   </div>
 </div>
 
 <div class="form-group">
-  <label class="col-md-4 control-label" for="ln">Tên</label>  
+  <label class="col-md-4 control-label" for="muctieu">Mục tiêu</label>  
   <div class="col-md-4">
-  <input id="ln" name="ln" type="text" placeholder="Tên" class="form-control input-md">    
+  <input id="muctieu" name="muctieu" type="text" class="form-control input-md">    
   </div>
 </div>
 
 <div class="form-group">
-  <label class="col-md-4 control-label" for="uname">UserID</label>
+  <label class="col-md-4 control-label" for="noidung">Nội dung chi tiết</label>  
   <div class="col-md-4">
-  <input id="uname" name="uname" type="text" placeholder="UserID" class="form-control input-md">    
+  <input id="noidung" name="noidung" type="text" class="form-control input-md">    
   </div>
 </div>
 
 <div class="form-group">
-  <label class="col-md-4 control-label" for="pass">Pass</label>  
-  <div class="col-md-4">
-  <input id="pass" name="pass" type="text" placeholder="Pass" class="form-control input-md">    
-  </div>
+  <label class="col-md-4 control-label" for="tgbd">Thời gian bắt đầu</label>  
+        <div class="col-md-4">
+            <input type="text" name="tgbd" class="form-control input-md" id="tgbd">
+        </div>
 </div>
 
 <div class="form-group">
-  <label class="col-md-4 control-label" for="Gender">Giới tính</label>
+  <label class="col-md-4 control-label" for="tgkt">Thời gian kết thúc</label>
+        <div class="col-md-4">
+            <input type="text" name="tgkt" class="form-control input-md" id="tgkt">
+        </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="ctdk">Chỉ tiêu đăng ký</label>
   <div class="col-md-4"> 
-    <label class="radio-inline" for="Gender-0">
-      <input type="radio" name="Gender" id="Gender-0" value="Nam" checked="checked">
-      Nam
-    </label> 
-    <label class="radio-inline" for="Gender-1">
-      <input type="radio" name="Gender" id="Gender-1" value="Nữ">
-      Nữ
-    </label>
+  <input id="ctdk" name="ctdk" type="text" class="form-control input-md">
   </div>
 </div>
 
 <div class="form-group">
-  <label class="col-md-4 control-label" for="cmpny">Chức vụ</label>  
-  <div class="col-md-4">
-       				<select class="form-control" name="cmpny" style="margin-top: 7px">
-      				<option value="gv">Giảng viên</option>      
-      				<option value="tbm">Trưởng bộ môn</option>
-      				<option value="tk">Trưởng khoa</option>
-      				<option value="bgh">Ban giám hiệu</option>
-      				<option value="ptc">Phòng Tổ chức - Cán bộ</option>
-      				<option value="ad">Admin</option>
-       				</select>
-    
-  </div>
-</div>
-
-<div class="form-group">
-  <label class="col-md-4 control-label" for="add1">Khoa</label>  
-  <div class="col-md-4">
-       				<select class="form-control" name="add1" style="margin-top: 7px">
-      				<option value="Công nghệ thông tin">Công nghệ thông tin</option>   
-      				<option value="Cơ khí chế tạo máy">Cơ khí chế tạo máy</option>
-      				<option value="Cơ khí động lưc">Cơ khí động lưc</option>
-      				<option value="Điện - Điện tử">Điện - Điện tử</option>			
-      				<option value="In-Truyền thông">In-Truyền thông</option>
-      				<option value="Xây dựng">Xây dựng</option>
-      				<option value="Kinh tế">Kinh tế</option>
-      				<option value="Lý luận chính trị">Lý luận chính trị</option>
-      				<option value="Ngoại ngữ">Ngoại ngữ</option>
-      				<option value="Công nghệ may & thời trang">Công nghệ may & Thời trang</option>
-      				<option value="Công nghệ hóa học & thực phẩm">Công nghệ hóa học & thực phẩm</option>
-       				</select>
-    
-  </div>
-</div>
-
-<div class="form-group">
-  <label class="col-md-4 control-label" for="email">Email</label>  
-  <div class="col-md-4">
-  <input id="email" name="email" type="text" placeholder="Email" class="form-control input-md">
-  <span id="helpBlock" class="help-block">Ex: email@example.com</span>    
-  </div>
-</div>
-
-<div class="form-group">
-  <label class="col-md-4 control-label" for="add">Địa chỉ</label>  
-  <div class="col-md-4">
-  <input id="add" name="add" type="text" placeholder="Địa chỉ" class="form-control input-md">    
-  </div>
-</div>
-
-<div class="form-group">
-  <label class="col-md-4 control-label" for="sdt">Số điện thoại</label>  
-  <div class="col-md-4">
-  <input id="sdt" name="sdt" type="text" placeholder="SĐT" class="form-control input-md">    
+  <label class="col-md-4 control-label" for="dkpimax">Điểm KPI tối đa</label>
+  <div class="col-md-4"> 
+  <input id="dkpimax" name="dkpimax" type="text" class="form-control input-md">
   </div>
 </div>
 
 <div class="form-group">
   <label class="col-md-4 control-label" for="submit"></label>
   <div class="col-md-4">
-    <button type ="submit" id="submit" class="btn btn-primary">Xác nhận</button>    
+    <button type ="submit" id="submit" class="btn btn-primary" >Xác nhận</button>    
     <a href="Admin.jsp" class="btn btn-danger" role="button">Hủy</a>
   </div>
 </div>
@@ -214,31 +187,31 @@ $(document).ready(
 			$("#submit").click(function()
 			{
 
-				if(!validateText("fn"))
+				if(!validateText("makpi"))
 				{
 					return false;
 				}
-				if(!validateText("ln"))
+				if(!validateText("muctieu"))
 				{
 					return false;
 				}
-				if(!validateText("uname"))
+				if(!validateText("noidung"))
 				{
 					return false;
 				}
-				if(!validateText("pass"))
+				if(!validateText("tgbd"))
 				{
 					return false;
 				}
-				if(!validateText("email"))
+				if(!validateText("tgkt"))
 				{
 					return false;
 				}
-				if(!validateText("add"))
+				if(!validateText("ctdk"))
 				{
 					return false;
 				}
-				if(!validateText("sdt"))
+				if(!validateText("dkpimax"))
 				{
 					return false;
 				}
@@ -246,5 +219,8 @@ $(document).ready(
 		}
 		)
 </script>
+
+
+
 </body>
 </html>

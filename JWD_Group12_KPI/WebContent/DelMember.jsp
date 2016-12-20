@@ -29,7 +29,7 @@
 	    if (i > 0) {
 	        out.print("Delete Successfull!"+"<a href='Admin.jsp'>Go back</a>");
 	    } else {
-	        out.print("Add fail!"+"<a href='Admin.jsp'>Go back</a>");
+	        out.print("Delete fail!"+"<a href='Admin.jsp'>Go back</a>");
 	    } 
 	}
 	catch (Exception e){
